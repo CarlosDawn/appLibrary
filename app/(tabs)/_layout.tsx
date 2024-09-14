@@ -24,11 +24,29 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="searchBook"
         options={{
-          title: 'Explore',
+          title: 'Search',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'search' : 'search'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="registerBook"
+        options={{
+          title: 'Register',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'add' : 'add'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="areaBook"
+        options={{
+          title: 'BooK',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'book' : 'book'} color={color} />
           ),
         }}
       />

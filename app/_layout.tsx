@@ -7,6 +7,11 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
+import { Slot } from "expo-router";
+import { SQLiteProvider } from "expo-sqlite";
+
+import { initDatabase } from "@/database/DataBase"
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -27,11 +32,15 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    /*<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
-    </ThemeProvider>
+    </ThemeProvider>*/
+
+    <SQLiteProvider databaseName="DataBaseBook.db" onInit={initDatabase}>
+    <Slot />
+    </SQLiteProvider>
   );
 }
