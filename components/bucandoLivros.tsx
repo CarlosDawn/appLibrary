@@ -3,18 +3,21 @@ import { ThemedText } from '@/components/ThemedText';
 
 
 type Props = PressableProps & {
-    titulo: string
-    autor: string
-    estado: string
-    genero: string
+    data: {
+        id: number
+        titulo: string
+        autor: string
+        estado: string
+        genero: string
 }
+    }
 
-export function LivroData({titulo, autor, estado, genero, ...rest}: Props) {
+export function LivroData({data, ...rest}: Props) {
     return (
         <View>
             <Pressable {...rest}>
                 <ThemedText style={styles.textoStyle}>
-                    {titulo} - {autor} - {estado} - {genero}
+                    {data.titulo} - {data.autor} - {data.estado} - {data.genero}
                 </ThemedText>
             </Pressable>
         </View>

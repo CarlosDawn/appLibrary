@@ -8,10 +8,20 @@ import { ThemedText } from '@/components/ThemedText';
 
 import { LivroData } from '@/components/bucandoLivros'
 
+import { NavigationContainer  } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import areaBook from '@/app/(tabs)/areaBook';
+
 
 export default function SearchScreen() {
   const [livros, setLivros] = useState<LivroDataBse[]>([])
   const [busca, setBusca] = useState("")
+
+  //const navigation = NavigationContainer ();
+  const Stack = createStackNavigator();
+  /*const irParaAreaLivro = (itemId: number ) => {
+    navigation.navigate('areaBook', {itemId});
+  };*/
 
   const livroDatabase = useDatabase();
 
@@ -29,7 +39,9 @@ export default function SearchScreen() {
   }, [busca])
 
   return (
+    
     <View style={styles.titleContainer}>
+
       <ThemedText style={styles.textoStyle} type='title'>Welcome! Serach Books Area</ThemedText>
       <HelloWave />
 
@@ -37,10 +49,9 @@ export default function SearchScreen() {
 
       <FlatList
         data={livros}
-        renderItem={({item}) => < LivroData titulo={item.titulo} autor={item.autor} estado={item.estado} genero={item.genero} />}
+        renderItem={({item}) => < LivroData data={item} onPress={() => irParaAreaLivro(item.id)}/>}
         keyExtractor={(item) => String(item.id)}
       />
-
     </View>  
   );
 }
