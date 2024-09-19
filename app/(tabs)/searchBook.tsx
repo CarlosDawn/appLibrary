@@ -8,30 +8,30 @@ import { ThemedText } from '@/components/ThemedText';
 
 import { LivroData } from '@/components/bucandoLivros'
 
-import { createStackNavigator } from '@react-navigation/stack';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
-import areaBook from '@/app/(tabs)/areaBook';
+import { useNavigation } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import areaBook from './areaBook';
 
-function irParaAreaLivro (itemID: number) {
-
-  const navigation = useNavigation();
-
-  return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <ThemedText>Home Screen</ThemedText>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('areaBook', itemID)}
-      />
-    </View>
-  );
+type User = {
+  id: number;
 };
 
-export default function SearchScreen(){
+function irParaAreaLivro ({ route }: { route: any }, itemID: number) {
+
+  //const navigation = useNavigation();
+
+  //navigation.navigate(areaBook);
+
+  console.log(itemID)
+
+};
+
+export default function SearchScreen({ navigation }: { navigation: any }){
   const [livros, setLivros] = useState<LivroDataBse[]>([])
   const [busca, setBusca] = useState("")
 
-  const Stack = createStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   const livroDatabase = useDatabase();
 
@@ -54,20 +54,16 @@ export default function SearchScreen(){
       <ThemedText style={styles.textoStyle} type='title'>Welcome! Serach Books Area</ThemedText>
       <HelloWave />
 
-      <Stack.Navigator>
-        <Stack.Screen name='areaBook' component={areaBook}></Stack.Screen>  
-      </Stack.Navigator>
-
       <TextInput style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} placeholder='Buscar' onChangeText={setBusca}/>
 
       <FlatList
         data={livros}
-        renderItem={({item}) => < LivroData data={item} onPress={() => irParaAreaLivro(item.id)}/>}
+        renderItem={({item}) => < LivroData data={item} onPress={() => navigation.navigate('areaBook', { user: {id: item.id}})}/>}
         keyExtractor={(item) => String(item.id)}
       />
-      
+
+      <Stack.Screen name="areaBook" component={areaBook} options={{title: 'Welcome'}}/>
     </View>  
-    
   );
 }
 
@@ -79,5 +75,10 @@ const styles = StyleSheet.create({
   },
   textoStyle: {
     color: 'black',
+  },
+  styleAreaBook: {
+    margin: 'auto',
+    alignItems: 'center',
+    gap: 8,
   }
 });
