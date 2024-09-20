@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, TextInput, Button } from 'react-native';
+import { StyleSheet, View, FlatList, TextInput } from 'react-native';
 
 import { useDatabase, LivroDataBse } from '@/database/useDataBase';
 
@@ -8,30 +8,11 @@ import { ThemedText } from '@/components/ThemedText';
 
 import { LivroData } from '@/components/bucandoLivros'
 
-import { useNavigation } from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
-import areaBook from './areaBook';
+import 'react-native-gesture-handler';
 
-type User = {
-  id: number;
-};
-
-function irParaAreaLivro ({ route }: { route: any }, itemID: number) {
-
-  //const navigation = useNavigation();
-
-  //navigation.navigate(areaBook);
-
-  console.log(itemID)
-
-};
-
-export default function SearchScreen({ navigation }: { navigation: any }){
+export default function SearchScreen(){
   const [livros, setLivros] = useState<LivroDataBse[]>([])
   const [busca, setBusca] = useState("")
-
-  const Stack = createNativeStackNavigator();
 
   const livroDatabase = useDatabase();
 
@@ -58,12 +39,10 @@ export default function SearchScreen({ navigation }: { navigation: any }){
 
       <FlatList
         data={livros}
-        renderItem={({item}) => < LivroData data={item} onPress={() => navigation.navigate('areaBook', { user: {id: item.id}})}/>}
+        renderItem={({item}) => < LivroData data={item}/>}
         keyExtractor={(item) => String(item.id)}
       />
-
-      <Stack.Screen name="areaBook" component={areaBook} options={{title: 'Welcome'}}/>
-    </View>  
+    </View>
   );
 }
 
@@ -75,10 +54,5 @@ const styles = StyleSheet.create({
   },
   textoStyle: {
     color: 'black',
-  },
-  styleAreaBook: {
-    margin: 'auto',
-    alignItems: 'center',
-    gap: 8,
   }
 });

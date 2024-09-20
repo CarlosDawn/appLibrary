@@ -2,10 +2,13 @@ import { useSQLiteContext } from "expo-sqlite"
 
 export type LivroDataBse = {
     id: number
+    image: string
     titulo: string
     autor: string
     estado: string
     genero: string
+    paginas: number
+    lingua: string
 }
 
 export function useDatabase(){
@@ -13,15 +16,18 @@ export function useDatabase(){
 
     async function criar(data: Omit<LivroDataBse, "id">) {
         const statement = await database.prepareAsync(
-            "INSERT INTO Livros (titulo, autor, estado, genero) VALUES ($titulo, $autor, $estado, $genero)"
+            "INSERT INTO Livros (image, titulo, autor, estado, genero, paginas, lingua) VALUES ($image, $titulo, $autor, $estado, $genero, $paginas, $linguas)"
         )
 
         try {
             const result = await statement.executeAsync({
+                $image: data.image,
                 $titulo: data.titulo,
                 $autor: data.autor,
                 $estado: data.estado,
-                $genero: data.genero
+                $genero: data.genero,
+                $paginas: data.paginas,
+                $lingua: data.lingua
             })
 
             const insertedRowId = result.lastInsertRowId.toLocaleString()

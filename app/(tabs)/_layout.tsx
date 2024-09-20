@@ -41,15 +41,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="areaBook"
-        options={{
-          title: 'BooK',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'book' : 'book'} color={color} />
-          ),
-        }}
-      />
+      
     </Tabs>
   );
 }
