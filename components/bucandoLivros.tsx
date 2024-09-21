@@ -11,7 +11,7 @@ type Props = PressableProps & {
         autor: string
         estado: string
         genero: string
-        pagias: number
+        pagnias: string
         lingua: string
 }
     }
@@ -21,7 +21,7 @@ export function LivroData({data, ...rest}: Props) {
         <View>
             <Pressable {...rest}>
                 <Link href={{pathname: '/areaBook', params:{id: data.id, image: data.image}}} style={styles.textoStyle}>
-                    {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.pagias} - {data.lingua}
+                    {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.pagnias} - {data.lingua}
                 </Link>
             </Pressable>
         </View>

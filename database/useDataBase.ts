@@ -7,7 +7,7 @@ export type LivroDataBse = {
     autor: string
     estado: string
     genero: string
-    paginas: number
+    paginas: string
     lingua: string
 }
 
@@ -16,7 +16,7 @@ export function useDatabase(){
 
     async function criar(data: Omit<LivroDataBse, "id">) {
         const statement = await database.prepareAsync(
-            "INSERT INTO Livros (image, titulo, autor, estado, genero, paginas, lingua) VALUES ($image, $titulo, $autor, $estado, $genero, $paginas, $linguas)"
+            "INSERT INTO Livros (image, titulo, autor, estado, genero, paginas, lingua) VALUES ($image, $titulo, $autor, $estado, $genero, $paginas, $lingua)"
         )
 
         try {

@@ -1,6 +1,6 @@
 //import * as React from 'react';
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import { ScrollView, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
 
@@ -8,6 +8,7 @@ import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 
 import * as ImagePicker from 'expo-image-picker';
+import { Image } from 'expo-image';
 
 export default function RegisterScreen() {
   const [titulo, setTitulo] = useState("");
@@ -17,7 +18,7 @@ export default function RegisterScreen() {
   const [paginas, setPaginas] = useState("");
   const [lingua, setLingua] = useState("");
 
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState("");
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -45,52 +46,49 @@ export default function RegisterScreen() {
     } catch (error) {
       console.log(error)
     }
+   console.log(paginas, image)
   }
 
   return (
-    <View style={styles.titleContainer}>
-      <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
-      <HelloWave/>
-      <ThemedText style={{color: 'black'}}>NOME</ThemedText>
-      <TextInput onChangeText={setTitulo} value={titulo}
-        placeholder='Titulo'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
-
-      <ThemedText style={{color: 'black'}}>AUTOR</ThemedText>
-      <TextInput onChangeText={setAutor} value={autor}
-        placeholder='Autor'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
+    <ScrollView>
+      <View style={styles.titleContainer}>
+        <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
+        <HelloWave/>
+        <ThemedText style={{color: 'black'}}>NOME</ThemedText>
+        <TextInput onChangeText={setTitulo} value={titulo}
+          placeholder='Titulo'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
+        <ThemedText style={{color: 'black'}}>AUTOR</ThemedText>
+        <TextInput onChangeText={setAutor} value={autor}
+          placeholder='Autor'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
       
-      <ThemedText style={{color: 'black'}}>ESTADO</ThemedText>
-      <TextInput onChangeText={setEstado} value={estado}
-        placeholder='Estado'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
-
-      <ThemedText style={{color: 'black'}}>GENERO</ThemedText>
-      <TextInput onChangeText={setGenero} value={genero}
-        placeholder='Genero'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
-
-      <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
-      <TextInput onChangeText={setPaginas} value={genero}
-        placeholder='Pagínas'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
-
-      <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
-      <TextInput onChangeText={setLingua} value={genero}
-        placeholder='Língua'
-        style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} 
-      />
-
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-
-      <Button title='SALVAR' onPress={registrarLivro}/>
-    </View>
+        <ThemedText style={{color: 'black'}}>ESTADO</ThemedText>
+        <TextInput onChangeText={setEstado} value={estado}
+          placeholder='Estado'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
+        <ThemedText style={{color: 'black'}}>GENERO</ThemedText>
+        <TextInput onChangeText={setGenero} value={genero}
+          placeholder='Genero'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
+        <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
+        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginas}
+          placeholder='Pagínas'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
+        <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
+        <TextInput onChangeText={setLingua} value={lingua}
+          placeholder='Língua'
+          style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
+        />
+        <Button title="Pick an image from camera roll" onPress={pickImage} />
+        <Button title='SALVAR' onPress={registrarLivro}/>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -104,7 +102,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  image: {
+    width: 140,
+    height: 200,
+  },
 });
 
 /*
