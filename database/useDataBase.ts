@@ -52,6 +52,18 @@ export function useDatabase(){
             throw error
         }
     }
+    async function buscaLivro(id: string) {
+        const idLivro = parseInt(id)
+        try {
+            const query = "SELECT * FROM Livros WHERE id LIKE ?"
 
-    return {criar, buscaNomeLivro}
+            const response = await database.getAllAsync<LivroDataBse>(query, `%${idLivro}`)
+
+            return response;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    return {criar, buscaNomeLivro, buscaLivro}
 }

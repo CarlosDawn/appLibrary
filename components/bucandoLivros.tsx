@@ -1,6 +1,7 @@
 import { Pressable, PressableProps, View, StyleSheet } from "react-native";
 import { ThemedText } from '@/components/ThemedText';
 import { Link } from 'expo-router';
+import { Route, useParams } from 'react-router-dom';
 
 
 type Props = PressableProps & {
@@ -20,9 +21,9 @@ export function LivroData({data, ...rest}: Props) {
     return (
         <View>
             <Pressable {...rest}>
-                <Link href={{pathname: '/areaBook', params:{id: data.id, image: data.image}}} style={styles.textoStyle}>
+                <Route  path="/post/:id">
                     {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.pagnias} - {data.lingua}
-                </Link>
+                </Route >
             </Pressable>
         </View>
     )
@@ -34,3 +35,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'pink',
     }
   });
+
+/*<Route  href={{pathname: '/areaBook', params:{id: data.id}}} style={styles.textoStyle}>
+                    {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.pagnias} - {data.lingua}
+                </Route >*/ 
