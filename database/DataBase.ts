@@ -9,9 +9,9 @@ export async function initDatabase(database:SQLiteDatabase) {
             autor TEXT NOT NULL,
             estado TEXT NOT NULL,
             genero TEXT NOT NULL,
-            paginas TEXT NOT NULL,
+            paginas INTEGER NOT NULL,
             lingua TEXT NOT NULL
-        );   
+        );  
     `)
 }
 
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS Livros (
             autor TEXT NOT NULL,
             estado TEXT NOT NULL,
             genero TEXT NOT NULL,
-            paginas TEXT NOT NULL,
+            paginas INTEGER NOT NULL,
             lingua TEXT NOT NULL
-        ); 
+        );   
 DROP TABLE IF EXISTS Livros;
 */

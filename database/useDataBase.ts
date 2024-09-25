@@ -7,7 +7,7 @@ export type LivroDataBse = {
     autor: string
     estado: string
     genero: string
-    paginas: string
+    paginas: number
     lingua: string
 }
 
@@ -41,7 +41,7 @@ export function useDatabase(){
         }
     }
 
-    async function buscaNomeLivro(titulo: string) {
+    async function buscaNomeLivro(titulo: string | string[]) {
         try {
             const query = "SELECT * FROM Livros WHERE titulo LIKE ?"
 
@@ -52,12 +52,11 @@ export function useDatabase(){
             throw error
         }
     }
-    async function buscaLivro(id: string) {
-        const idLivro = parseInt(id)
+    async function buscaLivrosLidos(estado: string | string[]) {
         try {
-            const query = "SELECT * FROM Livros WHERE id LIKE ?"
+            const query = "SELECT * FROM Livros WHERE estado LIKE ?"
 
-            const response = await database.getAllAsync<LivroDataBse>(query, `%${idLivro}`)
+            const response = await database.getAllAsync<LivroDataBse>(query, `%${estado}`)
 
             return response;
         } catch (error) {
@@ -65,5 +64,5 @@ export function useDatabase(){
         }
     }
 
-    return {criar, buscaNomeLivro, buscaLivro}
+    return {criar, buscaNomeLivro, buscaLivrosLidos}
 }

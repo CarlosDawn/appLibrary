@@ -1,5 +1,5 @@
 //import * as React from 'react';
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { ScrollView, SafeAreaView, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
@@ -8,31 +8,26 @@ import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 
 import * as ImagePicker from 'expo-image-picker';
-import { Image } from 'expo-image';
 
 import RNPickerSelect from "react-native-picker-select";
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
 
 export default function RegisterScreen() {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-             {label: 'English', value: 'en'},                  
-             {label: 'Deutsch', value: 'de'},
-             {label: 'French', value: 'fr'},
-               ]);
-  //---------------------------------
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
   const [estado, setEstado] = useState("");
   const [genero, setGenero] = useState("");
-  const [paginas, setPaginas] = useState("");
+  const [pagina, setPaginas] = useState("");
   const [lingua, setLingua] = useState("");
 
   const [image, setImage] = useState("");
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
+  const paginas: number = parseInt(pagina);//Convertendo o input de 'paginas' para 'number'
+
+  const pickImage = async () => { // Esta Função é para 'pegar' imagem escolhida pelo usuario
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -40,13 +35,14 @@ export default function RegisterScreen() {
       quality: 1,
     });
 
-    console.log(result);
+    console.log(result, paginas);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
   };
-
+//-------------------------------------------------
+  //=> Esta área é composta por funções para as funcionalidades do aplicativo ('CRUD')
   const livroDatabase = useDatabase();
 
   async function registrarLivro() {
@@ -59,6 +55,7 @@ export default function RegisterScreen() {
     }
    console.log(paginas, image)
   }
+//------------------------------------------------
 
   return (
     <SafeAreaView>
@@ -103,10 +100,11 @@ export default function RegisterScreen() {
 
 
           <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
-          <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginas}
+          <TextInput keyboardType="numbers-and-punctuation" onChangeText={setPaginas} value={pagina}
             placeholder='Pagínas'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, maxWidth:120}}
           />
+
           <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
           <TextInput onChangeText={setLingua} value={lingua}
             placeholder='Língua'
