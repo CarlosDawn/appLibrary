@@ -39,7 +39,7 @@ export default function HomeScreen() {
 //-------------------------------------------------------------------------------------------
   async function listaLivrosNaoLidos() {
     try {
-      const response = await livroDatabase.buscaLivrosLidos("NÃO LIDO")
+      const response = await livroDatabase.buscaLivrosLidos("NÂO LIDO")
       setLivrosNaoLido(response)
     } catch (error) {
       console.log(error);
@@ -48,7 +48,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     listaLivrosNaoLidos()
-  }, ["NÃO LIDO"])
+  }, ["NÂO LIDO"])
 //-------------------------------------------------------------------------------------------
 
   async function listaLivrosLendo() {
