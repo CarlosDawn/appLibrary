@@ -41,6 +41,34 @@ export function useDatabase(){
         }
     }
 
+    async function update(data: LivroDataBse) {
+        const statement = await database.prepareAsync(
+            "UPDATE Livros SET image = $image, titulo = $titulo, autor = $autor, estado = $estado, genero = $genero, paginas = $paginas, lingua = $lingua WHERE id = $id"
+        )
+
+        try {
+            const result = await statement.executeAsync({
+                $id: data.id,
+                $image: data.image,
+                $titulo: data.titulo,
+                $autor: data.autor,
+                $estado: data.estado,
+                $genero: data.genero,
+                $paginas: data.paginas,
+                $lingua: data.lingua
+            })
+
+            const insertedRowId = result.lastInsertRowId.toLocaleString()
+
+            return {insertedRowId}
+
+        } catch (error) {
+            throw error
+        } finally {
+            await statement.finalizeAsync()
+        }
+    }
+
     async function buscaNomeLivro(titulo: string | string[]) {
         try {
             const query = "SELECT * FROM Livros WHERE titulo LIKE ?"
@@ -52,9 +80,9 @@ export function useDatabase(){
             throw error
         }
     }
-    async function buscaLivrosLidos(estado: string | string[]) {
+    async function buscaLivrosPorEstatos(estado: string | string[]) {
         try {
-            const query = "SELECT * FROM Livros WHERE estado LIKE ?"
+            const query = "SELECT * FROM Livros WHERE estado LIKE ?;"
 
             const response = await database.getAllAsync<LivroDataBse>(query, `%${estado}`)
 
@@ -64,5 +92,5 @@ export function useDatabase(){
         }
     }
 
-    return {criar, buscaNomeLivro, buscaLivrosLidos}
+    return {criar, update, buscaNomeLivro, buscaLivrosPorEstatos}
 }

@@ -15,7 +15,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
 
-export default function RegisterScreen() {
+export default function UpdateScreen() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
   const [estado, setEstado] = useState("");
@@ -151,66 +151,3 @@ const pickerSelectStyles = StyleSheet.create({
       paddingRight: 30 // to ensure the text is never behind the icon
   }
 });
-
-/*
-<TextInput onChangeText={setEstado} value={estado}
-            placeholder='Estado'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
-          />
-
-<ThemedText style={{color: 'black'}}>GENERO</ThemedText>
-          <TextInput onChangeText={setGenero} value={genero}
-            placeholder='Genero'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}}
-          />
-
-
-<Image
-        style={styles.image}
-        source={{uri: image}}
-        contentFit="cover"
-        transition={1000}
-      />
-
-
-
-
-const styles2 = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    padding: 16,
-  },
-  dropdown: {
-    height: 50,
-    borderColor: 'blue',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 25,
-  },
-  icon: {
-    marginRight: 5,
-  },
-  label: {
-    margin: 'auto',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 25,
-    fontSize: 20,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
-});*/

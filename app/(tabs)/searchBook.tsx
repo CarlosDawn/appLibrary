@@ -32,10 +32,6 @@ export default function SearchScreen(){
   }, [busca])
 //-------------------------------------------------
 
-  //Há algum erro quando é usado o FlatList,
-  //tem hver com as 'paginas' que são chamadas do 
-  //arquivo '.../components/buscandoLivros.tsx' que puxa os dados
-  //do '.../database/DataBase.ts 
   return (
     
     <View style={styles.titleContainer}>

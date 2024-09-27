@@ -37,7 +37,7 @@ export function LivroData({data, ...rest}: Props) {
                                                             paginas: data.paginas,
                                                             lingua: data.lingua, 
                                                             image: data.image}}} style={styles.textoStyle}>
-                    {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.paginas} - {data.lingua}
+                    {data.titulo} - {data.autor} - {data.estado == "NÃO" ? 'Não Lido Ainda!' : `${data.estado}`} - {data.genero} - {data.paginas} - {data.lingua}
                 </Link >
             </Pressable>
         </View>

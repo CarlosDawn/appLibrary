@@ -26,7 +26,7 @@ export default function HomeScreen() {
 //-------------------------------------------------------------------------------------------
   async function listaLivrosLidos() {
     try {
-      const response = await livroDatabase.buscaLivrosLidos("LIDO")
+      const response = await livroDatabase.buscaLivrosPorEstatos("LIDO")
       setLivros(response)
     } catch (error) {
       console.log(error);
@@ -39,7 +39,7 @@ export default function HomeScreen() {
 //-------------------------------------------------------------------------------------------
   async function listaLivrosNaoLidos() {
     try {
-      const response = await livroDatabase.buscaLivrosLidos("NÂO LIDO")
+      const response = await livroDatabase.buscaLivrosPorEstatos("NÃO")
       setLivrosNaoLido(response)
     } catch (error) {
       console.log(error);
@@ -48,12 +48,12 @@ export default function HomeScreen() {
 
   useEffect(() => {
     listaLivrosNaoLidos()
-  }, ["NÂO LIDO"])
+  }, ["NÃO"])
 //-------------------------------------------------------------------------------------------
 
   async function listaLivrosLendo() {
     try {
-      const response = await livroDatabase.buscaLivrosLidos("LENDO")
+      const response = await livroDatabase.buscaLivrosPorEstatos("LENDO")
       setLivrosLendo(response)
     } catch (error) {
       console.log(error);
@@ -71,23 +71,24 @@ export default function HomeScreen() {
         <ThemedText type='title' style={styles.textoStyle}>Welcome! Home Area</ThemedText>
         <HelloWave />
       </ThemedView>
-
-      <FlatList
-        data={livrosLido}
-        renderItem={({item}) => < LivroData data={item}/>}
-        keyExtractor={(item) => String(item.id)}
-      />
-      <FlatList
-        data={livrosNaoLido}
-        renderItem={({item}) => < LivroData data={item}/>}
-        keyExtractor={(item) => String(item.id)}
-      />
+      <ThemedText style={styles.textoStyle}>Lendo</ThemedText>
       <FlatList
         data={livrosLendo}
         renderItem={({item}) => < LivroData data={item}/>}
         keyExtractor={(item) => String(item.id)}
       />
-
+      <ThemedText style={styles.textoStyle}>Lidos</ThemedText>
+      <FlatList
+        data={livrosLido}
+        renderItem={({item}) => < LivroData data={item}/>}
+        keyExtractor={(item) => String(item.id)}
+      />
+      <ThemedText style={styles.textoStyle}>Não Lidos</ThemedText>
+      <FlatList
+        data={livrosNaoLido}
+        renderItem={({item}) => < LivroData data={item}/>}
+        keyExtractor={(item) => String(item.id)}
+      />
     </View>
   );
 }
