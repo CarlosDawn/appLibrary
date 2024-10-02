@@ -15,7 +15,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
 
-export default function UpdateScreen() {
+export default function UpdateScreen(){
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
   const [estado, setEstado] = useState("");
@@ -45,9 +45,9 @@ export default function UpdateScreen() {
   //=> Esta área é composta por funções para as funcionalidades do aplicativo ('CRUD')
   const livroDatabase = useDatabase();
 
-  async function registrarLivro() {
+  async function atualizarLivro() {
     try {
-      const response = await livroDatabase.criar({image, titulo, autor, estado, genero, paginas, lingua})
+      const response = await livroDatabase.update({image, titulo, autor, estado, genero, paginas, lingua})
 
       Alert.alert("Livro Cadastrado !!! ------ ID: " + response.insertedRowId)
     } catch (error) {
@@ -113,7 +113,7 @@ export default function UpdateScreen() {
           />
           <Button title="Pick an image from camera roll" onPress={pickImage} />
 
-          <Button title='SALVAR' onPress={registrarLivro}/>
+          <Button title='SALVAR' onPress={atualizarLivro}/>
         </View>
       </ScrollView>
     </SafeAreaView>
