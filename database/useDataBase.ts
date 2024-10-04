@@ -10,6 +10,16 @@ export type LivroDataBse = {
     paginas: number
     lingua: string
 }
+export type LivroDataBaseUp = {
+    idUp: number
+    imageUp: string
+    tituloUp: string
+    autorUp: string
+    estadoUp: string
+    generoUp: string
+    paginasUp: number
+    linguaUp: string
+}
 
 export function useDatabase(){
     const database = useSQLiteContext()
@@ -41,26 +51,22 @@ export function useDatabase(){
         }
     }
 
-    async function update(data: LivroDataBse) {
+    async function update(data: LivroDataBaseUp) {
         const statement = await database.prepareAsync(
-            "UPDATE Livros SET image = $image, titulo = $titulo, autor = $autor, estado = $estado, genero = $genero, paginas = $paginas, lingua = $lingua WHERE id = $id"
+            "UPDATE Livros SET image = $imageUp, titulo = $tituloUp, autor = $autorUp, estado = $estadoUp, genero = $generoUp, paginas = $paginasUp, lingua = $linguaUp WHERE id = $id"
         )
 
         try {
-            const result = await statement.executeAsync({
-                $id: data.id,
-                $image: data.image,
-                $titulo: data.titulo,
-                $autor: data.autor,
-                $estado: data.estado,
-                $genero: data.genero,
-                $paginas: data.paginas,
-                $lingua: data.lingua
+            await statement.executeAsync({
+                $idUp: data.idUp,
+                $imageUp: data.imageUp,
+                $tituloUp: data.tituloUp,
+                $autorUp: data.autorUp,
+                $estadoUp: data.estadoUp,
+                $generoUp: data.generoUp,
+                $paginasUp: data.paginasUp,
+                $linguaUP: data.linguaUp
             })
-
-            const insertedRowId = result.lastInsertRowId.toLocaleString()
-
-            return {insertedRowId}
 
         } catch (error) {
             throw error

@@ -13,6 +13,7 @@ import RNPickerSelect from "react-native-picker-select";
 
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import { useRoute } from '@react-navigation/native';
 
 
 export default function UpdateScreen(){
@@ -26,6 +27,9 @@ export default function UpdateScreen(){
   const [image, setImage] = useState("");
 
   const paginas: number = parseInt(pagina);//Convertendo o input de 'paginas' para 'number'
+
+  const route = useRoute();
+  const id = route.params.id;
 
   const pickImage = async () => { // Esta Função é para 'pegar' imagem escolhida pelo usuario
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -63,7 +67,7 @@ export default function UpdateScreen(){
         <View style={styles.titleContainer}>
           <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
           <HelloWave/>
-          <ThemedText style={{color: 'black'}}>NOME</ThemedText>
+          <ThemedText style={{color: 'black'}}>{id}</ThemedText>
           <TextInput onChangeText={setTitulo} value={titulo}
             placeholder='Titulo'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
