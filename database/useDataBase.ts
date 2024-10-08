@@ -53,7 +53,7 @@ export function useDatabase(){
 
     async function update(data: LivroDataBaseUp) {
         const statement = await database.prepareAsync(
-            "UPDATE Livros SET image = $imageUp, titulo = $tituloUp, autor = $autorUp, estado = $estadoUp, genero = $generoUp, paginas = $paginasUp, lingua = $linguaUp WHERE id = $id"
+            "UPDATE Livros SET image = $imageUp, titulo = $tituloUp, autor = $autorUp, estado = $estadoUp, genero = $generoUp, paginas = $paginasUp, lingua = $linguaUp WHERE id = $idUp"
         )
 
         try {
@@ -65,7 +65,7 @@ export function useDatabase(){
                 $estadoUp: data.estadoUp,
                 $generoUp: data.generoUp,
                 $paginasUp: data.paginasUp,
-                $linguaUP: data.linguaUp
+                $linguaUp: data.linguaUp
             })
 
         } catch (error) {
@@ -75,11 +75,11 @@ export function useDatabase(){
         }
     }
 
-    async function buscaNomeLivro(titulo: string | string[]) {
+    async function buscaNomeLivro(titulo: string) {
         try {
-            const query = "SELECT * FROM Livros WHERE titulo LIKE ?"
+            const query = "SELECT * FROM Livros WHERE titulo LIKE ?";
 
-            const response = await database.getAllAsync<LivroDataBse>(query, `%${titulo}`)
+            const response = await database.getAllAsync<LivroDataBse>(query, `%${titulo}%`)
 
             return response;
         } catch (error) {

@@ -38,7 +38,7 @@ export default function SearchScreen(){
       <ThemedText style={styles.textoStyle} type='title'>Welcome! Serach Books Area</ThemedText>
       <HelloWave />
 
-      <TextInput style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} placeholder='Buscar' onChangeText={setBusca}/>
+      <TextInput style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} onChangeText={setBusca}/>
     
       <FlatList
         data={livros}

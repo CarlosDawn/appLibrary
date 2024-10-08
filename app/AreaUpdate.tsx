@@ -15,21 +15,21 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { useRoute } from '@react-navigation/native';
 
+const UpdateScreen = ({route = useRoute()}) => {
+  const [tituloUp, setTitulo] = useState("");
+  const [autorUp, setAutor] = useState("");
+  const [estadoUp, setEstado] = useState("");
+  const [generoUp, setGenero] = useState("");
+  const [paginas, setPaginas] = useState("");
+  const [linguaUp, setLingua] = useState("");
 
-export default function UpdateScreen(){
-  const [titulo, setTitulo] = useState("");
-  const [autor, setAutor] = useState("");
-  const [estado, setEstado] = useState("");
-  const [genero, setGenero] = useState("");
-  const [pagina, setPaginas] = useState("");
-  const [lingua, setLingua] = useState("");
+  const [imageUp, setImage] = useState("");
 
-  const [image, setImage] = useState("");
+  const paginasUp: number = parseInt(paginas);//Convertendo o input de 'paginas' para 'number'
 
-  const paginas: number = parseInt(pagina);//Convertendo o input de 'paginas' para 'number'
-
-  const route = useRoute();
-  const id = route.params.id;
+  //const route = useRoute();
+  const idUp = route.params;
+  //const idUp: number = parseInt(id);
 
   const pickImage = async () => { // Esta Função é para 'pegar' imagem escolhida pelo usuario
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -51,13 +51,12 @@ export default function UpdateScreen(){
 
   async function atualizarLivro() {
     try {
-      const response = await livroDatabase.update({image, titulo, autor, estado, genero, paginas, lingua})
+      //await livroDatabase.update({idUp, imageUp, tituloUp, autorUp, estadoUp, generoUp, paginasUp, linguaUp})
 
-      Alert.alert("Livro Cadastrado !!! ------ ID: " + response.insertedRowId)
+      Alert.alert("Livro Atualizado !!! ")
     } catch (error) {
       console.log(error)
     }
-   console.log(paginas, image)
   }
 //------------------------------------------------
 
@@ -67,19 +66,19 @@ export default function UpdateScreen(){
         <View style={styles.titleContainer}>
           <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
           <HelloWave/>
-          <ThemedText style={{color: 'black'}}>{id}</ThemedText>
-          <TextInput onChangeText={setTitulo} value={titulo}
+          <ThemedText style={{color: 'black'}}>AREA UPDATE</ThemedText>
+          <TextInput onChangeText={setTitulo} value={tituloUp}
             placeholder='Titulo'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
           />
           <ThemedText style={{color: 'black'}}>AUTOR</ThemedText>
-          <TextInput onChangeText={setAutor} value={autor}
+          <TextInput onChangeText={setAutor} value={autorUp}
             placeholder='Autor'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
           />
           <ThemedText style={{color: 'black'}}>ESTADO</ThemedText>
           <RNPickerSelect
-              onValueChange={setEstado} value={estado}
+              onValueChange={setEstado} value={estadoUp}
               items={[
                   { label: "LIDO", value: "LIDO" },
                   { label: "NÃO", value: "NÃO" },
@@ -90,7 +89,7 @@ export default function UpdateScreen(){
 
           <ThemedText style={{color: 'black'}}>GENERO</ThemedText>
           <RNPickerSelect
-              onValueChange={setGenero} value={genero}
+              onValueChange={setGenero} value={generoUp}
               items={[
                   { label: "ROMANCE", value: "ROMANCE" },
                   { label: "TERROR", value: "TERROR" },
@@ -105,13 +104,13 @@ export default function UpdateScreen(){
 
 
           <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
-          <TextInput keyboardType="numbers-and-punctuation" onChangeText={setPaginas} value={pagina}
+          <TextInput keyboardType="numbers-and-punctuation" onChangeText={setPaginas} value={paginas}
             placeholder='Pagínas'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, maxWidth:120}}
           />
 
           <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
-          <TextInput onChangeText={setLingua} value={lingua}
+          <TextInput onChangeText={setLingua} value={linguaUp}
             placeholder='Língua'
             style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
           />
@@ -123,6 +122,8 @@ export default function UpdateScreen(){
     </SafeAreaView>
   );
 }
+
+export default UpdateScreen;
 
 const styles = StyleSheet.create({
   titleContainer: {
