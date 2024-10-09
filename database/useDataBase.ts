@@ -75,6 +75,16 @@ export function useDatabase(){
         }
     }
 
+    async function remove(id: number) {
+        try {
+            await database.execAsync(
+                "DELETE FROM Livros WHERE id = " + id
+            )
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async function buscaNomeLivro(titulo: string) {
         try {
             const query = "SELECT * FROM Livros WHERE titulo LIKE ?";
@@ -98,5 +108,5 @@ export function useDatabase(){
         }
     }
 
-    return {criar, update, buscaNomeLivro, buscaLivrosPorEstatos}
+    return {criar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos}
 }

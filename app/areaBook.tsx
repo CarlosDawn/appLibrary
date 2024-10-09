@@ -14,6 +14,8 @@ import * as ImagePicker from 'expo-image-picker';
 
 import RNPickerSelect from "react-native-picker-select";
 
+import { router } from 'expo-router';
+
 export default function BookScreen() {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
@@ -101,6 +103,19 @@ export default function BookScreen() {
       }
 
     }
+
+    async function removerLivro(id: string) {
+      const idDelete = parseInt(id)
+      try {
+        await livroDatabase.remove(idDelete);
+
+        Alert.alert("Livro APAGADO !!!")
+
+        router.push('/(tabs)/searchBook')
+      } catch (error) {
+        console.log(error)
+      }
+    }
     //------------------------------------------------
     return (
       <SafeAreaView>
@@ -155,6 +170,7 @@ export default function BookScreen() {
             />
             <Button title="Pick an image from camera roll" onPress={pickImage} />
             <Button title='SALVAR' onPress={atualizarLivro}/>
+            <Button title='DELETAR' onPress={() => removerLivro(id)}/>
           </View>
         </ScrollView>
       </SafeAreaView>
