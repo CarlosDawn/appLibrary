@@ -38,7 +38,7 @@ export default function BookScreen() {
     };
 
     return (
-      <View>
+      /*<View>
         <Text style={styles.titleContainer} >LIVRO</Text>
         <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
 
@@ -56,6 +56,22 @@ export default function BookScreen() {
         <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
 
         <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
+      </View>*/
+      <View style={styles2.container}>
+        <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
+        <Image
+          source={{uri: image}}
+          style={styles.image}
+        />
+        <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
+        <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
+        <Text style={styles.titleContainer}>ESTADO: {estado == "NÃO" ? 'Não Lido Ainda!' : `${estado}`}</Text>
+        <Text style={styles.titleContainer}>GENERO: {genero}</Text>
+        <Text style={styles.titleContainer}>PAGINAS: {paginas}</Text>
+        <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
+        <View style={styles2.buttonContainer}>
+          <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
+        </View>
       </View>
     );
     
@@ -238,3 +254,30 @@ const pickerSelectStyles = StyleSheet.create({
 
 
     </View>  */
+
+    const styles2 = StyleSheet.create({
+      container: {
+        backgroundColor: '#fff',
+        padding: 16,
+        borderRadius: 8,
+        marginBottom: 16,
+      },
+      image: {
+        width: 100,
+        height: 150,
+        borderRadius: 8,
+      },
+      title: {
+        // Estilos para o título
+      },
+      author: {
+        // Estilos para o autor
+      },
+      pages: {
+        // Estilos para o número de páginas
+      },
+      buttonContainer: {
+        // Estilos para o container dos botões
+      },
+      // ... outros estilos
+    });
