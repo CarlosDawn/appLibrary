@@ -41,6 +41,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="emprestados"
+        options={{
+          title: 'EMPRESTIMOS',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'bookmarks-outline' : 'bookmarks-outline'} color={color} />
+          ),
+        }}
+      />
       
     </Tabs>
   );

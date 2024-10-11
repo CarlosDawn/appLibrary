@@ -11,7 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
-import DatePicker from 'react-native-datepicker';
+import DatePicker from '@react-native-community/datetimepicker';
 
 import RNPickerSelect from "react-native-picker-select";
 
@@ -201,20 +201,24 @@ export default function BookScreen() {
   }
   
   function AreaEmprestarLivro() {
-    const [nomePessoa, setnome] = useState("");
-    const [dataEmprestimo, setdtaEmpre] = useState("");
-    const [prazoDevolucao, setPrazo] = useState("");
+    const [nome_pessoa, setnome] = useState("");
+    const [dataEmprestimo, setdtaEmpre] = useState(new Date());
+    const [prazoDevolucao, setPrazo] = useState(new Date());
 
     const livroDatabase = useDatabase();
 
-    function emprestarLivro() {
+    async function emprestarLivro() {
 
-      const livroId = parseInt(id);
       try {
-        
-        //livroDatabase.emprestar(livroId, nomePessoa, dataEmprestimo, prazoDevolucao)
-        console.log(dataEmprestimo)
-        console.log(prazoDevolucao)
+
+        const livro_id = parseInt(id);
+
+        const dataFullEmpres: string = dataEmprestimo.getDate()+"/"+dataEmprestimo.getMonth()+"/"+dataEmprestimo.getFullYear();
+        const dataFullPrazo: string = prazoDevolucao.getDate()+"/"+prazoDevolucao.getMonth()+"/"+prazoDevolucao.getFullYear();
+
+        await livroDatabase.emprestar({livro_id, nome_pessoa, dataFullEmpres, dataFullPrazo});
+
+        Alert.alert("Livro EMPRESTADO !!!")
 
       } catch (error) {
         console.log(error)
@@ -232,53 +236,32 @@ export default function BookScreen() {
         <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
         <Text style={styles.titleContainer}>GENERO: {genero}</Text>
         <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
-
-        <DatePicker
-          style={{width: 200}}
-          date={dataEmprestimo}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{   
-
-            dateIcon: {
-              position: 'absolute',
-              right: 0,
-              top: 4,
-              marginLeft: 0
-            },
-            dateInput: {
-              marginLeft: 36   
-
-            }
-          }}
-          onDateChange={(date) => {setdtaEmpre(dataEmprestimo)}}
+        
+        <TextInput onChangeText={setnome} value={nome_pessoa}
+            placeholder='Titulo'
+            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200, margin: 'auto'}}
         />
 
+        <Text style={styles.titleContainer}>Selecione Data de Emprestimo</Text>
         <DatePicker
-          style={{width: 200}}
-          date={prazoDevolucao}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{   
-
-            dateIcon: {
-              position: 'absolute',
-              right: 0,
-              top: 4,
-              marginLeft: 0
-            },
-            dateInput: {
-              marginLeft: 36   
-
-            }
+          style={styles.titleContainer}
+          value={dataEmprestimo}
+          mode="date" // or "datetime" for both date and time
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate || dataEmprestimo;
+            setdtaEmpre(currentDate);
           }}
-          onDateChange={() => {setPrazo(prazoDevolucao)}}
+        />
+
+        <Text style={styles.titleContainer}>Selecione Data de Devolução</Text>
+        <DatePicker
+          style={styles.titleContainer}
+          value={prazoDevolucao}
+          mode="date" // or "datetime" for both date and time
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate || prazoDevolucao;
+            setPrazo(currentDate);
+          }}
         />
 
         <View style={styles2.buttonContainer}>

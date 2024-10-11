@@ -18,6 +18,15 @@ type Props = PressableProps & {
         lingua: string
     }
 }
+type Empres = PressableProps & {
+    data: {
+        id: number
+        livro_id: number
+        nome_pessoa: string
+        data_emprestimo: string
+        prazo_devolucao: string
+    }
+}
 
 export function LivroData({data, ...rest}: Props) {
     return (
@@ -38,6 +47,21 @@ export function LivroData({data, ...rest}: Props) {
                                                             lingua: data.lingua, 
                                                             image: data.image}}} style={styles.textoStyle}>
                     {data.titulo} - {data.autor} - {data.estado == "NÃO" ? 'Não Lido Ainda!' : `${data.estado}`} - {data.genero} - {data.paginas} - {data.lingua}
+                </Link >
+            </Pressable>
+        </View>
+    )
+}
+export function LivroEmprestado({data, ...rest}: Empres) {
+    return (
+        <View>
+            <Pressable {...rest}>
+                <Link  href={{pathname: '/areaBook', params:{id: data.id, 
+                                                            livro_id: data.livro_id,
+                                                            nome_pessoa: data.nome_pessoa,
+                                                            data_emprestimo: data.data_emprestimo,
+                                                            prazo_devolucao: data.prazo_devolucao}}} style={styles.textoStyle}>
+                    {data.livro_id} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}
                 </Link >
             </Pressable>
         </View>

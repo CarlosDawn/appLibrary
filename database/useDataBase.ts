@@ -20,6 +20,13 @@ export type LivroDataBaseUp = {
     paginasUp: number
     linguaUp: string
 }
+export type livrosEmprestados = {
+    id: number
+    livro_id: number
+    nome_pessoa: string
+    dataFullEmpres: string
+    dataFullPrazo: string
+}
 
 export function useDatabase(){
     const database = useSQLiteContext()
@@ -51,20 +58,24 @@ export function useDatabase(){
         }
     }
 
-    async function emprestar(livroId: number, nomePessoa: string, dataEmprestimo: string, prazoDevolucao: string) {
+    async function emprestar(data: Omit<livrosEmprestados, "id">) {
         const statement = await database.prepareAsync(
-            'INSERT INTO emprestar (livro_id, nome_pessoa, data_emprestimo, prazo_devolucao) VALUES ($livroId, ?, ?, ?)'     )
+            "INSERT INTO Emprestar (livro_id, nome_pessoa, data_emprestimo, prazo_devolucao) VALUES ($livro_id, $nome_pessoa, $dataFullEmpres, $dataFullPrazo)"
+        )
 
         try {
             await statement.executeAsync({
-                livroId,
-                nomePessoa,
-                dataEmprestimo,
-                prazoDevolucao
-            })           
+                $livro_id: data.livro_id,
+                $nome_pessoa: data.nome_pessoa,
+                $dataFullEmpres: data.dataFullEmpres,
+                $dataFullPrazo: data.dataFullPrazo
+            }) 
             
+            console.log(data.livro_id, data.nome_pessoa, data.dataFullEmpres)
         } catch (error) {
             throw error
+        } finally {
+            await statement.finalizeAsync()
         }
     }
 
@@ -124,6 +135,22 @@ export function useDatabase(){
             throw error
         }
     }
+    async function buscaTodosEmprestados() {
+        try {
+            const query = "SELECT * FROM Emprestar";
 
-    return {criar, emprestar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos}
+            const response = await database.getAllAsync<livrosEmprestados>(query)
+
+            console.log(response);
+            return response;
+
+        } catch (error) {
+            throw error
+        }
+    }
+    async function removeemprestimo(id: number) {
+        
+    }
+
+    return {criar, emprestar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos, buscaTodosEmprestados}
 }

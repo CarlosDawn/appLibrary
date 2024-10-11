@@ -18,7 +18,7 @@ export async function initDatabase(database:SQLiteDatabase) {
             nome_pessoa TEXT,
             data_emprestimo TEXT,
             prazo_devolucao TEXT
-        ); 
+        );
     `)
 }
 
@@ -34,4 +34,13 @@ CREATE TABLE IF NOT EXISTS Livros (
             lingua TEXT NOT NULL
         );  
 DROP TABLE IF EXISTS Livros;
+
+CREATE TABLE IF NOT EXISTS Emprestar (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            livro_id INTEGER,
+            nome_pessoa TEXT,
+            data_emprestimo TEXT,
+            prazo_devolucao TEXT
+        ); 
+DROP TABLE IF EXISTS Emprestar;
 */
