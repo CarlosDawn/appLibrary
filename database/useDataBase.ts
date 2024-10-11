@@ -51,6 +51,23 @@ export function useDatabase(){
         }
     }
 
+    async function emprestar(livroId: number, nomePessoa: string, dataEmprestimo: string, prazoDevolucao: string) {
+        const statement = await database.prepareAsync(
+            'INSERT INTO emprestar (livro_id, nome_pessoa, data_emprestimo, prazo_devolucao) VALUES ($livroId, ?, ?, ?)'     )
+
+        try {
+            await statement.executeAsync({
+                livroId,
+                nomePessoa,
+                dataEmprestimo,
+                prazoDevolucao
+            })           
+            
+        } catch (error) {
+            throw error
+        }
+    }
+
     async function update(data: LivroDataBaseUp) {
         const statement = await database.prepareAsync(
             "UPDATE Livros SET image = $imageUp, titulo = $tituloUp, autor = $autorUp, estado = $estadoUp, genero = $generoUp, paginas = $paginasUp, lingua = $linguaUp WHERE id = $idUp"
@@ -108,5 +125,5 @@ export function useDatabase(){
         }
     }
 
-    return {criar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos}
+    return {criar, emprestar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos}
 }

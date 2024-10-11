@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
+import DatePicker from 'react-native-datepicker';
 
 import RNPickerSelect from "react-native-picker-select";
 
@@ -35,6 +36,11 @@ export default function BookScreen() {
   function LivroScreen({ navigation }: { navigation: any }) {
     const irParaTelaUpdate = () => {
       navigation.navigate("AreaUptadeScrenn");
+    };
+    
+
+    const irEmprestar = () =>  {
+      navigation.navigate("AreaEmprestarLivro")
     };
 
     return (
@@ -70,6 +76,7 @@ export default function BookScreen() {
         <Text style={styles.titleContainer}>PAGINAS: {paginas}</Text>
         <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
         <View style={styles2.buttonContainer}>
+          <Button title='EMPRESTAR' onPress={irEmprestar}/>
           <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
         </View>
       </View>
@@ -191,12 +198,101 @@ export default function BookScreen() {
         </ScrollView>
       </SafeAreaView>
     );
-  }                    
+  }
+  
+  function AreaEmprestarLivro() {
+    const [nomePessoa, setnome] = useState("");
+    const [dataEmprestimo, setdtaEmpre] = useState("");
+    const [prazoDevolucao, setPrazo] = useState("");
+
+    const livroDatabase = useDatabase();
+
+    function emprestarLivro() {
+
+      const livroId = parseInt(id);
+      try {
+        
+        //livroDatabase.emprestar(livroId, nomePessoa, dataEmprestimo, prazoDevolucao)
+        console.log(dataEmprestimo)
+        console.log(prazoDevolucao)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    return(
+      <View>
+        <Text>Area de emprestar</Text>
+        <Image
+          source={{uri: image}}
+          style={styles.image}
+        />
+        <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
+        <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
+        <Text style={styles.titleContainer}>GENERO: {genero}</Text>
+        <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
+
+        <DatePicker
+          style={{width: 200}}
+          date={dataEmprestimo}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{   
+
+            dateIcon: {
+              position: 'absolute',
+              right: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36   
+
+            }
+          }}
+          onDateChange={(date) => {setdtaEmpre(dataEmprestimo)}}
+        />
+
+        <DatePicker
+          style={{width: 200}}
+          date={prazoDevolucao}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{   
+
+            dateIcon: {
+              position: 'absolute',
+              right: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36   
+
+            }
+          }}
+          onDateChange={() => {setPrazo(prazoDevolucao)}}
+        />
+
+        <View style={styles2.buttonContainer}>
+          <Button title='EMPRESTAR' onPress={emprestarLivro}/>
+        </View>
+      </View>
+    );
+  }
 
   return ( 
     <Stack.Navigator>
         <Stack.Screen name="AreaLivro" component={LivroScreen} options={{headerShown: false}}/>
         <Stack.Screen name="AreaUptadeScrenn" component={AreaUptadeScrenn} />
+        <Stack.Screen name="AreaEmprestarLivro" component={AreaEmprestarLivro} />
     </Stack.Navigator>
   );
 }
