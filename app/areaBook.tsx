@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo, FC } from 'react';
 import { StyleSheet, View, Button, Text, SafeAreaView, ScrollView, TextInput, Alert, KeyboardAvoidingView  } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
@@ -17,6 +17,11 @@ import RNPickerSelect from "react-native-picker-select";
 
 import { router } from 'expo-router';
 
+import { resets } from '@/assets/styles/_resets.module';
+interface Props {
+  className?: string;
+}
+
 export default function BookScreen() {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
@@ -33,7 +38,7 @@ export default function BookScreen() {
 
   const Stack = createStackNavigator();    
 
-  function LivroScreen({ navigation }: { navigation: any }) {
+  function LivroScreen({ navigation }: { navigation: any })  {
     const irParaTelaUpdate = () => {
       navigation.navigate("AreaUptadeScrenn");
     };
@@ -44,25 +49,7 @@ export default function BookScreen() {
     };
 
     return (
-      /*<View>
-        <Text style={styles.titleContainer} >LIVRO</Text>
-        <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
-
-        <Image
-          style={styles.image}
-          source={{uri: image}}
-          contentFit="cover"
-          transition={1000}
-        />
-        <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
-        <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
-        <Text style={styles.titleContainer}>ESTADO: {estado == "NÃO" ? 'Não Lido Ainda!' : `${estado}`}</Text>
-        <Text style={styles.titleContainer}>GENERO: {genero}</Text>
-        <Text style={styles.titleContainer}>PAGINAS: {paginas}</Text>
-        <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
-
-        <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
-      </View>*/
+      /*LivroScreen({ navigation }: { navigation: any })
       <View style={styles2.container}>
         <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
         <Image
@@ -78,6 +65,29 @@ export default function BookScreen() {
         <View style={styles2.buttonContainer}>
           <Button title='EMPRESTAR' onPress={irEmprestar}/>
           <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
+        </View>
+      </View>*/
+      <View style={styles.root}>
+        <Link style={{margin: 'auto', top: -80, marginBottom: -10}} href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
+        <Image
+          source={{uri: image}}
+          style={resets.rectangle47}
+        />
+        <Text style={resets.tereLiye}>{estado}</Text>
+        <Text style={resets.AUTOR}>AUTOR: {autor}</Text>
+        <Text style={resets.bintang}>{titulo}</Text>
+        <View style={resets.line4} />
+        <View style={resets.rectangle48}>
+            <Text style={resets.romance}>{genero}</Text>
+        </View>
+        <Text style={resets._102}>{paginas}</Text>
+        <Text style={resets.pAGES}>PAGINAS</Text>
+        <View style={resets.rectangle7} />
+        <View style={resets.rectangle8} />
+        <View style={resets._102}>
+          <Button title='EMPRESTAR' onPress={irEmprestar}/>
+          <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
+          <Text style={resets.dELATAR}>DELATAR</Text>
         </View>
       </View>
     );
@@ -273,26 +283,13 @@ export default function BookScreen() {
 
   return ( 
     <Stack.Navigator>
-        <Stack.Screen name="AreaLivro" component={LivroScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="AreaLivro" component={LivroScreen}/>
         <Stack.Screen name="AreaUptadeScrenn" component={AreaUptadeScrenn} />
         <Stack.Screen name="AreaEmprestarLivro" component={AreaEmprestarLivro} />
     </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    margin: 'auto',
-    alignItems: 'center',
-    gap: 8,
-    color: 'black'
-  },
-  
-  image: {
-    width: 140,
-    height: 200,
-  },
-});
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
       maxWidth: 150,
@@ -305,6 +302,23 @@ const pickerSelectStyles = StyleSheet.create({
       borderRadius: 4,
       color: 'black',
       paddingRight: 30 // to ensure the text is never behind the icon
+  }
+});
+
+const styles = StyleSheet.create({
+  root: {
+    height: 'auto',
+    fontFamily: 'sans-serif',
+    backgroundColor: '#f5f5f5',
+    flex: 1, // Replace 'flex-basis: 100%' with 'flex: 1'
+    overflow: 'scroll', // Replace 'overflow-y: auto' with 'overflowY: 'scroll''
+    justifyContent: 'space-between'
+  },
+  titleContainer: {
+
+  },
+  image: {
+
   }
 });
 
