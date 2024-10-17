@@ -1,10 +1,12 @@
-import { Pressable, PressableProps, View, StyleSheet } from "react-native";
+import { Pressable, PressableProps, View, StyleSheet, Text } from "react-native";
 import { ThemedText } from '@/components/ThemedText';
 import { Link } from 'expo-router';
 import { Route, useParams } from 'react-router-dom';
 
 import { Image } from 'expo-image';
+import React from "react";
 
+import {styleScreen} from '@/assets/styles/serach_styles';
 
 type Props = PressableProps & {
     data: {
@@ -30,7 +32,7 @@ type Empres = PressableProps & {
 
 export function LivroData({data, ...rest}: Props) {
     return (
-        <View>
+        /*<View>
             <Pressable {...rest}>
                 <Image
                     style={styles.image}
@@ -49,6 +51,18 @@ export function LivroData({data, ...rest}: Props) {
                     {data.titulo} - {data.autor} - {data.estado == "NÃO" ? 'Não Lido Ainda!' : `${data.estado}`} - {data.genero} - {data.paginas} - {data.lingua}
                 </Link >
             </Pressable>
+        </View>*/
+        <View>
+            <View style={styleScreen.rectangle50} />
+            <Text style={styleScreen.tITULO}>{data.titulo}</Text>
+            <Text style={styleScreen.aUTOR}>{data.autor}</Text>
+            <Text style={styleScreen.gENRO}>{data.genero}</Text>
+            <Text style={styleScreen.pAGINAS}>{data.paginas} PAGINAS</Text>
+            <View style={styleScreen.line5} />
+            <View style={styleScreen.rectangle136} />
+            <Text style={styleScreen.vER}>VER</Text>
+            <Text style={styleScreen._835}>8.35</Text>
+            <Text style={styleScreen._4G}>4G</Text>
         </View>
     )
 }
