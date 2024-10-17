@@ -68,7 +68,7 @@ export default function BookScreen() {
         </View>
       </View>*/
       <View style={styles.root}>
-        <Link style={{margin: 'auto', top: -80, marginBottom: -10}} href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
+        <Link style={{marginLeft: 'auto', marginRight: 'auto', top: 10, left: 5, textDecorationLine: 'underline'}} href={"/(tabs)/searchBook"}>-Voltar Para Pesquisa-</Link>
         <Image
           source={{uri: image}}
           style={resets.rectangle47}
@@ -82,11 +82,13 @@ export default function BookScreen() {
         </View>
         <Text style={resets._102}>{paginas}</Text>
         <Text style={resets.pAGES}>PAGINAS</Text>
-        <View style={resets.rectangle7} />
-        <View style={resets.rectangle8} />
-        <View style={resets._102}>
-          <Button title='EMPRESTAR' onPress={irEmprestar}/>
-          <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
+        <View style={resets.rectangleAlterar}>
+          <Text style={resets.aLTER} onPress={irParaTelaUpdate}>ALTERAR</Text>
+        </View>
+        <View style={resets.rectangleAlterar}>
+          <Text style={resets.eMPRES} onPress={irEmprestar}>EMPRESTAR</Text>
+        </View>
+        <View style={resets.rectangle492}>
           <Text style={resets.dELATAR}>DELATAR</Text>
         </View>
       </View>
@@ -309,7 +311,7 @@ const styles = StyleSheet.create({
   root: {
     height: 'auto',
     fontFamily: 'sans-serif',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F3FFE0',
     flex: 1, // Replace 'flex-basis: 100%' with 'flex: 1'
     overflow: 'scroll', // Replace 'overflow-y: auto' with 'overflowY: 'scroll''
     justifyContent: 'space-between'
