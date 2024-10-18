@@ -18,14 +18,6 @@ export default function SearchScreen(this: any){
   const [livros, setLivros] = useState<LivroDataBse[]>([])
   const [busca, setBusca] = useState("")
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const handleScroll = (event: { nativeEvent: any; }) => {
-    const { nativeEvent } = event;
-    const offset = nativeEvent.contentOffset.y;
-    setScrollPosition(offset);
-  };
-
 //-------------------------------------------------
   //=> Esta área é composta por funções para as funcionalidades do aplicativo ('CRUD')
   const livroDatabase = useDatabase();
@@ -67,16 +59,16 @@ export default function SearchScreen(this: any){
       />
     */
     <SafeAreaView style={styleScreen.root}>
-      <Text style={styleScreen.hasilScan}>Hasil Scan</Text>
-      <TextInput style={styleScreen.group95} onChangeText={setBusca}/>
-      <View style={styleScreen.line10} />
-      <View style={styleScreen.rectangle10} />
+      <View>
+        <Text style={styleScreen.hasilScan}>BUSCAR LIVROS</Text>
+        <TextInput style={styleScreen.group95} onChangeText={setBusca}/>
+      </View>
       <FlatList
         data={livros}
         renderItem={({item}) => < LivroData data={item}/>}
         keyExtractor={(item) => String(item.id)}
-        onScroll={handleScroll}
       />
+      <View style={styleScreen.retanguloToFlatList}></View>
     </SafeAreaView>
   );
 }

@@ -1,6 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export const styleScreen = StyleSheet.create({
+    retanguloToFlatList: {
+      //position: 'static',
+      margin: 'auto',
+      top: 10,
+      width: 400,
+      height: 50
+    },
     group95: {
       left: 17,
       top: 136,
@@ -44,7 +51,7 @@ export const styleScreen = StyleSheet.create({
       color: '#000',
       fontSize: 24,
       fontWeight: '600',
-      fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+      fontFamily: 'Times New Roman',
       position: 'absolute',
       left:   
    131,
@@ -74,18 +81,18 @@ export const styleScreen = StyleSheet.create({
       backgroundColor: '#fff',
     },
     rectangle51: {
-      //position: 'absolute',
-      left: 19.8521,
-      top: 26.7929,
-      width: 198.9822,
-      height: 100.8876,
-      borderRadius: 31,
+      position: 'absolute',
+      left: 24.8521,
+      top: 200.8529,
+      width: 83.9822,
+      height: 120.8876,
+      borderRadius: 11,
     },
     tITULO: {
       color: '#000',
       fontSize: 20,
       fontWeight: '600',
-      fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+      fontFamily: 'Times New Roman',
       position: 'absolute',
       left:   
    133,
@@ -97,7 +104,7 @@ export const styleScreen = StyleSheet.create({
     aUTOR: {
       color: '#000',
       fontSize: 12,
-      fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+      fontFamily: 'Times New Roman',
       position: 'absolute',
       left:   
    133,
@@ -109,7 +116,7 @@ export const styleScreen = StyleSheet.create({
     gENRO: {
         color: '#000',
         fontSize: 12,
-        fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+        fontFamily: 'Times New Roman',
         position: 'absolute',
         left:   
      133,
@@ -122,7 +129,7 @@ export const styleScreen = StyleSheet.create({
         color: '#000',
         fontSize: 12,
         fontWeight: '500',
-        fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+        fontFamily: 'Times New Roman',
         position: 'absolute',
         left:   
      133,
@@ -153,15 +160,16 @@ export const styleScreen = StyleSheet.create({
         backgroundColor: '#90a67f',
       },
       vER: {
-        color: '#fff',
+        //color: '#fff',
+        color: 'black',
         fontSize: 16,
-        fontWeight: '600',
-        fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
-        position: 'absolute',
-        left: 'auto',
-        bottom: 56,
+        //fontWeight: '600',
+        fontFamily: 'Times New Roman',
+        //position: 'absolute',
+        left: 130,
         width: 380,
-        height: 21,
+        height: 30,
+        margin: 'auto',
         textAlign: 'center',
         alignItems: 'center',
         flexDirection: 'column',
@@ -219,7 +227,7 @@ export const styleScreen = StyleSheet.create({
         color: '#000',
         fontSize: 14,
         fontWeight: '600',
-        fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+        fontFamily: 'Times New Roman',
         //position: 'absolute',
         left: 'auto',
         top: 12,
@@ -234,7 +242,7 @@ export const styleScreen = StyleSheet.create({
         color: '#000',
         fontSize: 14,
         fontWeight: '600',
-        fontFamily: 'Poppins, system-ui, -apple-system, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', \'Liberation Sans\', sans-serif',
+        fontFamily: 'Times New Roman',
         position: 'absolute',
         left: 'auto',
         top: 15,

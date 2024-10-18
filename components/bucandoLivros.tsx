@@ -1,10 +1,13 @@
-import { Pressable, PressableProps, View, StyleSheet, Text } from "react-native";
+import { Pressable, PressableProps, View, StyleSheet, Text, Button } from "react-native";
 import { ThemedText } from '@/components/ThemedText';
 import { Link } from 'expo-router';
 import { Route, useParams } from 'react-router-dom';
 
 import { Image } from 'expo-image';
 import React from "react";
+
+import { createStackNavigator } from '@react-navigation/stack';
+import LivroScreen from '@/app/areaBook'
 
 import {styleScreen} from '@/assets/styles/serach_styles';
 
@@ -30,7 +33,14 @@ type Empres = PressableProps & {
     }
 }
 
-export function LivroData({data, ...rest}: Props) {
+export function LivroData({data, ...rest}: Props, { navigation }: { navigation: any }) {
+
+    const Stack = createStackNavigator();
+
+    const irAreaLivro = () => {
+        navigation.navigate("AreaLivro");
+    };
+
     return (
         /*<View>
             <Pressable {...rest}>
@@ -54,15 +64,20 @@ export function LivroData({data, ...rest}: Props) {
         </View>*/
         <View>
             <View style={styleScreen.rectangle50} />
+            <Image
+                    style={styleScreen.rectangle51}
+                    source={{uri: data.image}}
+                    contentFit="cover"
+                    transition={1000}
+                />
             <Text style={styleScreen.tITULO}>{data.titulo}</Text>
             <Text style={styleScreen.aUTOR}>{data.autor}</Text>
             <Text style={styleScreen.gENRO}>{data.genero}</Text>
             <Text style={styleScreen.pAGINAS}>{data.paginas} PAGINAS</Text>
             <View style={styleScreen.line5} />
             <View style={styleScreen.rectangle136} />
-            <Text style={styleScreen.vER}>VER</Text>
-            <Text style={styleScreen._835}>8.35</Text>
-            <Text style={styleScreen._4G}>4G</Text>
+            <View style={styleScreen.vER}><Button title='VER' onPress={irAreaLivro}/></View>
+            <Stack.Screen name="AreaLivro" component={LivroScreen}/>
         </View>
     )
 }
@@ -85,7 +100,8 @@ export function LivroEmprestado({data, ...rest}: Empres) {
 const styles = StyleSheet.create({
     textoStyle: {
       color: 'black',
-      backgroundColor: 'pink',
+      paddingTop: 10,
+      bottom: -122
     },
     image: {
         width: 45,

@@ -22,7 +22,7 @@ interface Props {
   className?: string;
 }
 
-export default function BookScreen() {
+export default function BookScreen({ navigation }: { navigation: any }) {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
     id: string,
