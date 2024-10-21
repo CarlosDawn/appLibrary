@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const styleScreen = StyleSheet.create({
+export const styleScreenHome = StyleSheet.create({
     retanguloToFlatList: {
       //position: 'static',
       margin: 'auto',

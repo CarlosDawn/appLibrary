@@ -13,6 +13,7 @@ import { LivroData } from '@/components/bucandoLivros'
 
 import 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { router } from 'expo-router';
 
 export default function SearchScreen(this: any){
   const [livros, setLivros] = useState<LivroDataBse[]>([])
@@ -58,18 +59,19 @@ export default function SearchScreen(this: any){
           }}
       />
     */
-    <SafeAreaView style={styleScreen.root}>
+    <View style={styleScreen.root}>
       <View>
         <Text style={styleScreen.hasilScan}>BUSCAR LIVROS</Text>
         <TextInput style={styleScreen.group95} onChangeText={setBusca}/>
       </View>
       <FlatList
         data={livros}
-        renderItem={({item}) => < LivroData data={item}/>}
+        renderItem={({item}) => < LivroData data={item} />}
         keyExtractor={(item) => String(item.id)}
+        style={{width: 397, marginTop: 165}}
       />
       <View style={styleScreen.retanguloToFlatList}></View>
-    </SafeAreaView>
+    </View>
   );
 }
 

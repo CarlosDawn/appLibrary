@@ -18,11 +18,7 @@ import RNPickerSelect from "react-native-picker-select";
 import { router } from 'expo-router';
 
 import { resets } from '@/assets/styles/_resets.module';
-interface Props {
-  className?: string;
-}
-
-export default function BookScreen({ navigation }: { navigation: any }) {
+export default function BookScreen() {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
     id: string,
@@ -309,7 +305,7 @@ const pickerSelectStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   root: {
-    height: 'auto',
+    width: 425,
     fontFamily: 'sans-serif',
     backgroundColor: '#F3FFE0',
     flex: 1, // Replace 'flex-basis: 100%' with 'flex: 1'

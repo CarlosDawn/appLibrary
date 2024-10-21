@@ -1,15 +1,18 @@
-import { Pressable, PressableProps, View, StyleSheet, Text, Button } from "react-native";
+import { Pressable, PressableProps, View, StyleSheet, Text, Button, TouchableHighlight, } from "react-native";
 import { ThemedText } from '@/components/ThemedText';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { Route, useParams } from 'react-router-dom';
 
 import { Image } from 'expo-image';
 import React from "react";
 
 import { createStackNavigator } from '@react-navigation/stack';
-import LivroScreen from '@/app/areaBook'
 
 import {styleScreen} from '@/assets/styles/serach_styles';
+import { styleScreenHome } from "@/assets/styles/home_styles_screen";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { MaterialIcons } from "@expo/vector-icons";
+import { SafeAreaFrameContext, SafeAreaView } from "react-native-safe-area-context";
 
 type Props = PressableProps & {
     data: {
@@ -22,6 +25,7 @@ type Props = PressableProps & {
         paginas: number
         lingua: string
     }
+
 }
 type Empres = PressableProps & {
     data: {
@@ -33,13 +37,7 @@ type Empres = PressableProps & {
     }
 }
 
-export function LivroData({data, ...rest}: Props, { navigation }: { navigation: any }) {
-
-    const Stack = createStackNavigator();
-
-    const irAreaLivro = () => {
-        navigation.navigate("AreaLivro");
-    };
+export function LivroData({data, ...rest}: Props) {
 
     return (
         /*<View>
@@ -65,24 +63,84 @@ export function LivroData({data, ...rest}: Props, { navigation }: { navigation: 
         <View>
             <View style={styleScreen.rectangle50} />
             <Image
-                    style={styleScreen.rectangle51}
-                    source={{uri: data.image}}
-                    contentFit="cover"
-                    transition={1000}
-                />
+                style={styleScreen.rectangle51}
+                source={{uri: data.image}}
+                contentFit="cover"
+                transition={800}
+            />
             <Text style={styleScreen.tITULO}>{data.titulo}</Text>
             <Text style={styleScreen.aUTOR}>{data.autor}</Text>
             <Text style={styleScreen.gENRO}>{data.genero}</Text>
             <Text style={styleScreen.pAGINAS}>{data.paginas} PAGINAS</Text>
             <View style={styleScreen.line5} />
-            <View style={styleScreen.rectangle136} />
-            <View style={styleScreen.vER}><Button title='VER' onPress={irAreaLivro}/></View>
-            <Stack.Screen name="AreaLivro" component={LivroScreen}/>
+            <View style={styleScreen.rectangle136} >
+                <Link href={{pathname: '/areaBook', params:{id: data.id,
+                                                                titulo: data.titulo,
+                                                                autor: data.autor,
+                                                                estado: data.estado,
+                                                                genero:data.genero,
+                                                                paginas: data.paginas,
+                                                                lingua: data.lingua,
+                                                                image: data.image}}} style={styleScreenHome.vER}>VER</Link>
+            </View>
+        </View>
+    )
+}
+export function LivroDataHome({data, ...rest}: Props) {
+
+    const handlePress = () => {
+        console.log('Botão pressionado');
+    };
+
+    return (
+        /*<View>
+            <Pressable {...rest}>
+                <Image
+                    style={styles.image}
+                    source={{uri: data.image}}
+                    contentFit="cover"
+                    transition={1000}
+                />
+                <Link  href={{pathname: '/areaBook', params:{id: data.id, 
+                                                            titulo: data.titulo, 
+                                                            autor: data.autor,
+                                                            estado: data.estado,
+                                                            genero:data.genero,
+                                                            paginas: data.paginas,
+                                                            lingua: data.lingua, 
+                                                            image: data.image}}} style={styles.textoStyle}>
+                    {data.titulo} - {data.autor} - {data.estado == "NÃO" ? 'Não Lido Ainda!' : `${data.estado}`} - {data.genero} - {data.paginas} - {data.lingua}
+                </Link >
+            </Pressable>
+        </View>*/
+        <View>
+            <View style={styleScreenHome.rectangle50} />
+            <Image
+                style={styleScreenHome.rectangle51}
+                source={{uri: data.image}}
+                contentFit="cover"
+                transition={800}
+            />
+            <Text style={styleScreenHome.tITULO}>{data.titulo}</Text>
+            <Text style={styleScreenHome.aUTOR}>{data.autor}</Text>
+            <Text style={styleScreenHome.gENRO}>{data.genero}</Text>
+            <Text style={styleScreenHome.pAGINAS}>{data.paginas} PAGINAS</Text>
+            <View style={styleScreenHome.line5} />
+            <View style={styleScreenHome.rectangle136} >
+                <Link href={{pathname: '/areaBook', params:{id: data.id,
+                                                                titulo: data.titulo,
+                                                                autor: data.autor,
+                                                                estado: data.estado,
+                                                                genero:data.genero,
+                                                                paginas: data.paginas,
+                                                                lingua: data.lingua,
+                                                                image: data.image}}} style={styleScreenHome.vER}>VER</Link>
+            </View>
         </View>
     )
 }
 export function LivroEmprestado({data, ...rest}: Empres) {
-    return (
+    /*return (
         <View>
             <Pressable {...rest}>
                 <Link  href={{pathname: '/areaBook', params:{id: data.id, 
@@ -94,7 +152,7 @@ export function LivroEmprestado({data, ...rest}: Empres) {
                 </Link >
             </Pressable>
         </View>
-    )
+    )*/
 }
 
 const styles = StyleSheet.create({
@@ -113,4 +171,8 @@ const styles = StyleSheet.create({
 
 /*<Route  href={{pathname: '/areaBook', params:{id: data.id, image: data.image}}} style={styles.textoStyle}>
                     {data.titulo} - {data.autor} - {data.estado} - {data.genero} - {data.pagnias} - {data.lingua}
-                </Route >*/ 
+                </Route >
+                
+                
+                <View style={styleScreen.vER}><Button title='VER' onPress={irAreaLivro}/></View>
+            <Stack.Screen name="AreaLivro" component={LivroScreen}/>*/ 
