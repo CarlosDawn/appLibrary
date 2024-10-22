@@ -1,6 +1,6 @@
 //import * as React from 'react';
 import React, { useState } from 'react';
-import { ScrollView, SafeAreaView, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
+import { Pressable, ScrollView, SafeAreaView, StyleSheet, View, TextInput, Button, Alert, Text } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
 
@@ -8,12 +8,16 @@ import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 
 import * as ImagePicker from 'expo-image-picker';
+import { Image } from 'expo-image';
 
 import RNPickerSelect from "react-native-picker-select";
 
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
+import { stylesRegister } from '@/assets/styles/register_styles'
+import { styleScreen } from '@/assets/styles/serach_styles';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function RegisterScreen() {
   const [titulo, setTitulo] = useState("");
@@ -58,7 +62,7 @@ export default function RegisterScreen() {
 //------------------------------------------------
 
   return (
-    <SafeAreaView>
+    /*<SafeAreaView>
       <ScrollView>
         <View style={styles.titleContainer}>
           <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
@@ -116,7 +120,70 @@ export default function RegisterScreen() {
           <Button title='SALVAR' onPress={registrarLivro}/>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </SafeAreaView>*/
+    <ScrollView>
+      <View style={stylesRegister.root}>
+        <Text style={stylesRegister.cADASTRARLIVRO}>CADASTRAR LIVRO</Text>
+
+        <Image
+          source={{uri: image}}
+          style={stylesRegister.fotoPagina}
+        />
+
+        <Pressable style={stylesRegister.chooseImage} onPress={pickImage}>
+          <MaterialIcons name='camera-alt' size={26}/>
+        </Pressable>
+
+        <TextInput onChangeText={setTitulo} value={titulo}
+            placeholder='Titulo'
+            style={stylesRegister.rectangle24}
+        />
+        <TextInput onChangeText={setAutor} value={autor}
+            placeholder='Autor'
+            style={stylesRegister.rectangle242}
+        />
+
+        <View style={{transform: [{translateY: 320}, {translateX: 37}]}}>
+          <RNPickerSelect
+                onValueChange={setEstado} value={estado}
+                items={[
+                    { label: "LIDO", value: "LIDO" },
+                    { label: "NÃO", value: "NÃO" },
+                    { label: "LENDO", value: "LENDO" },
+                ]}
+                style={pickerSelectStyles}
+          />
+          <RNPickerSelect
+                onValueChange={setGenero} value={genero}
+                items={[
+                    { label: "ROMANCE", value: "ROMANCE" },
+                    { label: "TERROR", value: "TERROR" },
+                    { label: "THRILLER", value: "THRILLER" },
+                    { label: "AVENTURA", value: "AVENTURA" },
+                    { label: "MISTERIO", value: "MISTERIO" },
+                    { label: "FICÇÃO", value: "FICÇÃO" },
+                    { label: "OUTROS", value: "OUTROS" }
+                ]}
+                style={pickerSelectStyles}
+          />
+        </View>
+
+        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={pagina}
+            placeholder='Pagínas'
+            style={stylesRegister.rectangle245}
+        />
+        <TextInput onChangeText={setLingua} value={lingua}
+            placeholder='Língua'
+            style={stylesRegister.rectangle246}
+        />
+        <Pressable style={stylesRegister.rectangle247} onPress={registrarLivro}>
+          <Text style={stylesRegister.sALVAR}>SALVAR</Text>
+        </Pressable>
+        <View style={stylesRegister._2024}>
+          <Text style={stylesRegister.textBlock4}>©2024</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -139,16 +206,20 @@ const styles = StyleSheet.create({
 });
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-      maxWidth: 150,
-      margin: 'auto',
       fontSize: 16,
       paddingVertical: 12,
       paddingHorizontal: 10,
-      borderWidth: 1,
-      borderColor: 'gray',
-      borderRadius: 4,
       color: 'black',
-      paddingRight: 30 // to ensure the text is never behind the icon
+      paddingRight: 30, // to ensure the text is never behind the icon
+      //position: 'absolute',
+      //transform: [{translateY: 320}, {translateX: 37}],
+      //width: 342,
+      //height: 63,
+      /*borderWidth: 2,
+      borderColor: '#00000026',
+      borderStyle: 'solid',
+      borderRadius: 20,
+      backgroundColor: '#f7f7f7',*/
   }
 });
 

@@ -140,7 +140,7 @@ export function LivroDataHome({data, ...rest}: Props) {
     )
 }
 export function LivroEmprestado({data, ...rest}: Empres) {
-    /*return (
+    return (
         <View>
             <Pressable {...rest}>
                 <Link  href={{pathname: '/areaBook', params:{id: data.id, 
@@ -152,7 +152,7 @@ export function LivroEmprestado({data, ...rest}: Empres) {
                 </Link >
             </Pressable>
         </View>
-    )*/
+    )
 }
 
 const styles = StyleSheet.create({
