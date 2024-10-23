@@ -7,7 +7,7 @@ export const stylesRegister = StyleSheet.create({
       alignSelf: 'stretch',
       flexDirection: 'column',
       alignItems: 'flex-start',
-      backgroundColor: '#DAE9C8',
+      backgroundColor: '#fff',
       width: 415,
       transform: [{translateY: 0}],
       height: 1300

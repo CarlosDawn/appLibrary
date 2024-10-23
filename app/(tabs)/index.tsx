@@ -1,6 +1,6 @@
 //import * as React from 'react';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList, ScrollView, Text } from 'react-native';
 
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
@@ -68,32 +68,31 @@ export default function HomeScreen() {
 //-------------------------------------------------------------------------------------------
 
   return (
-    <View>
-      <ThemedView style={styles.titleContainer}>
-          <ThemedText type='title' style={styles.textoStyle}>Welcome! Home Area</ThemedText>
-          <HelloWave />
-        </ThemedView>
+    <View style={{backgroundColor: '#F3FFE0',
+      height: 800}}>
+      <View style={{height: 100, margin: 'auto'}}>
+        <Text style={{ fontFamily: 'Times New Roman', fontSize: 50, height: 53, color: 'black', transform: [{translateY: 50}] }}>HOME</Text>
+      </View>
       <View style={styles.titleContainer}>
-        <ThemedText style={styles.textoStyle}>Lendo</ThemedText>
         <FlatList
           data={livrosLendo}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 200, borderStyle: 'solid', borderColor: 'purple', borderWidth: 8.5, borderRadius: 20}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20, marginBottom: 12}}
         />
-        <ThemedText style={styles.textoStyle}>Lidos</ThemedText>
+
         <FlatList
           data={livrosLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 200, borderStyle: 'solid', borderColor: 'purple', borderWidth: 8.5, borderRadius: 20}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20, marginBottom: 12}}
         />
-        <ThemedText style={styles.textoStyle}>Não Lidos</ThemedText>
+
         <FlatList
           data={livrosNaoLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 200, borderStyle: 'solid', borderColor: 'purple', borderWidth: 8.5, borderRadius: 20}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20}}
         />
       </View>
     </View>

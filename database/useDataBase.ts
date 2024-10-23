@@ -115,7 +115,7 @@ export function useDatabase(){
 
     async function buscaNomeLivro(titulo: string) {
         try {
-            const query = "SELECT * FROM Livros WHERE titulo LIKE ?";
+            const query = "SELECT * FROM Livros WHERE titulo LIKE ? ORDER BY titulo ASC";
 
             const response = await database.getAllAsync<LivroDataBse>(query, `%${titulo}%`)
 

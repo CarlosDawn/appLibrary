@@ -9,8 +9,12 @@ export const styleScreen = StyleSheet.create({
       height: 50
     },
     group95: {
-      left: 17,
-      top: 136,
+      transform: [{translateX: 60}, {translateY: 110}],
+      width: 300,
+      height: 40, 
+      borderWidth: 1, 
+      borderColor: "#999", 
+      borderRadius: 9
     },
     bookOpen: {
       left: 178,
@@ -52,10 +56,8 @@ export const styleScreen = StyleSheet.create({
       fontSize: 24,
       fontWeight: '600',
       fontFamily: 'Times New Roman',
-      position: 'absolute',
-      left:   
-   131,
-      top: 54,
+      //position: 'absolute',
+      transform: [{translateY: 80}, {translateX: 130}],
       minWidth: 'auto',
       minHeight: 'auto',
       flexDirection: 'column',

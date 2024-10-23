@@ -1,5 +1,5 @@
 import React, { useState, memo, FC } from 'react';
-import { StyleSheet, View, Button, Text, SafeAreaView, ScrollView, TextInput, Alert, KeyboardAvoidingView  } from 'react-native';
+import { StyleSheet, View, Button, Text, SafeAreaView, ScrollView, TextInput, Alert, KeyboardAvoidingView, Pressable  } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
 
@@ -18,6 +18,8 @@ import RNPickerSelect from "react-native-picker-select";
 import { router } from 'expo-router';
 
 import { resets } from '@/assets/styles/_resets.module';
+import { stylesRegister } from '@/assets/styles/register_styles'
+import { MaterialIcons } from '@expo/vector-icons';
 export default function BookScreen() {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
@@ -44,27 +46,24 @@ export default function BookScreen() {
       navigation.navigate("AreaEmprestarLivro")
     };
 
+    const livroDatabase = useDatabase();
+
+    async function removerLivro(id: string) {
+      const idDelete = parseInt(id)
+      try {
+        await livroDatabase.remove(idDelete);
+
+        Alert.alert("Livro APAGADO !!!")
+
+        router.push('/(tabs)/searchBook')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     return (
-      /*LivroScreen({ navigation }: { navigation: any })
-      <View style={styles2.container}>
-        <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
-        <Image
-          source={{uri: image}}
-          style={styles.image}
-        />
-        <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
-        <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
-        <Text style={styles.titleContainer}>ESTADO: {estado == "NÃO" ? 'Não Lido Ainda!' : `${estado}`}</Text>
-        <Text style={styles.titleContainer}>GENERO: {genero}</Text>
-        <Text style={styles.titleContainer}>PAGINAS: {paginas}</Text>
-        <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
-        <View style={styles2.buttonContainer}>
-          <Button title='EMPRESTAR' onPress={irEmprestar}/>
-          <Button title='ALTERAR' onPress={irParaTelaUpdate}/>
-        </View>
-      </View>*/
       <View style={styles.root}>
-        <Link style={{marginLeft: 'auto', marginRight: 'auto', top: 10, left: 5, textDecorationLine: 'underline'}} href={"/(tabs)/searchBook"}>-Voltar Para Pesquisa-</Link>
+        <Link style={{marginLeft: 'auto', marginRight: 'auto', textDecorationLine: 'underline'}} href={"/(tabs)/searchBook"}>-Voltar Para Pesquisa-</Link>
         <Image
           source={{uri: image}}
           style={resets.rectangle47}
@@ -78,6 +77,7 @@ export default function BookScreen() {
         </View>
         <Text style={resets._102}>{paginas}</Text>
         <Text style={resets.pAGES}>PAGINAS</Text>
+        <Text style={{transform: [{translateY: -216}], margin:'auto'}}>IDIOMA: {lingua}</Text>
         <View style={resets.rectangleAlterar}>
           <Text style={resets.aLTER} onPress={irParaTelaUpdate}>ALTERAR</Text>
         </View>
@@ -85,7 +85,7 @@ export default function BookScreen() {
           <Text style={resets.eMPRES} onPress={irEmprestar}>EMPRESTAR</Text>
         </View>
         <View style={resets.rectangle492}>
-          <Text style={resets.dELATAR}>DELATAR</Text>
+          <Text style={resets.dELATAR} onPress={() => removerLivro(id)} >DELATAR</Text>
         </View>
       </View>
     );
@@ -134,39 +134,34 @@ export default function BookScreen() {
       }
 
     }
-
-    async function removerLivro(id: string) {
-      const idDelete = parseInt(id)
-      try {
-        await livroDatabase.remove(idDelete);
-
-        Alert.alert("Livro APAGADO !!!")
-
-        router.push('/(tabs)/searchBook')
-      } catch (error) {
-        console.log(error)
-      }
-    }
     //------------------------------------------------
     return (
-      <SafeAreaView>
-        <ScrollView keyboardShouldPersistTaps="always">
-          <View style={styles.titleContainer}>
-            <ThemedText type='title'>Welcome! Update Books Area</ThemedText>
-            <ThemedText style={{color: 'black'}}>NOME</ThemedText>
-            <KeyboardAvoidingView behavior="padding">
-              <TextInput onChangeText={setTitulo} value={tituloUp}
-                placeholder='Titulo'
-                style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-              />
-            </KeyboardAvoidingView>
+    <ScrollView>
+      <View style={stylesRegister.root}>
+        <Text style={stylesRegister.cADASTRARLIVRO}>CADASTRAR LIVRO</Text>
 
-            <ThemedText style={{color: 'black'}}>AUTOR</ThemedText>
-            <TextInput onChangeText={setAutor} value={autorUp}
-              style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-            />
-            <ThemedText style={{color: 'black'}}>ESTADO</ThemedText>
-            <RNPickerSelect
+        <ThemedText style={{color: 'black', transform: [{translateY: 400}, {translateX: 50}]}}>TITULO</ThemedText>
+        <ThemedText style={{color: 'black', transform: [{translateY: 470}, {translateX: 50}]}}>AUTOR</ThemedText>
+
+        <Image
+          source={{uri: imageUp}}
+          style={stylesRegister.fotoPagina}
+        />
+
+        <Pressable style={stylesRegister.chooseImage} onPress={pickImage}>
+          <MaterialIcons name='camera-alt' size={26}/>
+        </Pressable>
+
+        <TextInput onChangeText={setTitulo} value={tituloUp}
+            style={stylesRegister.rectangle24}
+        />
+        <TextInput onChangeText={setAutor} value={autorUp}
+            style={stylesRegister.rectangle242}
+        />
+
+        <View style={{transform: [{translateY: 310}, {translateX: 147}]}}>
+          <ThemedText style={{color: 'black', transform: [{translateY: 0}, {translateX: 10}]}}>STATUS ATUAL</ThemedText>
+          <RNPickerSelect
                 onValueChange={setEstado} value={estadoUp}
                 items={[
                     { label: "LIDO", value: "LIDO" },
@@ -174,9 +169,9 @@ export default function BookScreen() {
                     { label: "LENDO", value: "LENDO" },
                 ]}
                 style={pickerSelectStyles}
-            />
-            <ThemedText style={{color: 'black'}}>GENERO</ThemedText>
-            <RNPickerSelect
+          />
+          <ThemedText style={{color: 'black', transform: [{translateY: 0}, {translateX: 10}]}}>GENERO OU TIPO</ThemedText>
+          <RNPickerSelect
                 onValueChange={setGenero} value={generoUp}
                 items={[
                     { label: "ROMANCE", value: "ROMANCE" },
@@ -188,24 +183,24 @@ export default function BookScreen() {
                     { label: "OUTROS", value: "OUTROS" }
                 ]}
                 style={pickerSelectStyles}
-            />
-            <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
-            <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginaToUp}
-              placeholder='Pagínas'
-              style={{height: 40, width: 100, borderWidth: 1, borderColor: "#999", borderRadius: 9, textAlign: 'center'}}
-            />
-            <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
-            <TextInput onChangeText={setLingua} value={linguaUp}
-              placeholder='Língua'
-              style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-            />
-            <Button title="Pick an image from camera roll" onPress={pickImage} />
-            <Button title='SALVAR' onPress={atualizarLivro}/>
-            <Button title='DELETAR' onPress={() => removerLivro(id)}/>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
+          />
+        </View>
+
+        <ThemedText style={{color: 'black', transform: [{translateY: 325}, {translateX: 50}]}}>NÚMERO DE PAGÍNAS</ThemedText>
+        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginaToUp}
+            style={stylesRegister.rectangle245}
+        />
+
+        <ThemedText style={{color: 'black', transform: [{translateY: 334}, {translateX: 50}]}}>IDIOMA</ThemedText>
+        <TextInput onChangeText={setLingua} value={linguaUp}
+            style={stylesRegister.rectangle246}
+        />
+        <Pressable style={stylesRegister.rectangle247} onPress={atualizarLivro}>
+          <Text style={stylesRegister.sALVAR}>SALVAR</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
+  );
   }
   
   function AreaEmprestarLivro() {

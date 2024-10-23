@@ -14,6 +14,7 @@ import { LivroData } from '@/components/bucandoLivros'
 import 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function SearchScreen(this: any){
   const [livros, setLivros] = useState<LivroDataBse[]>([])
@@ -63,6 +64,8 @@ export default function SearchScreen(this: any){
       <View>
         <Text style={styleScreen.hasilScan}>BUSCAR LIVROS</Text>
         <TextInput style={styleScreen.group95} onChangeText={setBusca}/>
+        <MaterialIcons name='search' size={24} style={{transform: [{translateY: 80}, {translateX: 330}], zIndex: -1}}/>
+
       </View>
       <FlatList
         data={livros}

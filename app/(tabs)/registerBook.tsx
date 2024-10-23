@@ -16,7 +16,6 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
 import { stylesRegister } from '@/assets/styles/register_styles'
-import { styleScreen } from '@/assets/styles/serach_styles';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function RegisterScreen() {
@@ -125,6 +124,9 @@ export default function RegisterScreen() {
       <View style={stylesRegister.root}>
         <Text style={stylesRegister.cADASTRARLIVRO}>CADASTRAR LIVRO</Text>
 
+        <ThemedText style={{color: 'black', transform: [{translateY: 400}, {translateX: 50}]}}>TITULO</ThemedText>
+        <ThemedText style={{color: 'black', transform: [{translateY: 470}, {translateX: 50}]}}>AUTOR</ThemedText>
+
         <Image
           source={{uri: image}}
           style={stylesRegister.fotoPagina}
@@ -143,7 +145,8 @@ export default function RegisterScreen() {
             style={stylesRegister.rectangle242}
         />
 
-        <View style={{transform: [{translateY: 320}, {translateX: 37}]}}>
+        <View style={{transform: [{translateY: 310}, {translateX: 147}]}}>
+          <ThemedText style={{color: 'black', transform: [{translateY: 0}, {translateX: 10}]}}>STATUS ATUAL</ThemedText>
           <RNPickerSelect
                 onValueChange={setEstado} value={estado}
                 items={[
@@ -153,6 +156,7 @@ export default function RegisterScreen() {
                 ]}
                 style={pickerSelectStyles}
           />
+          <ThemedText style={{color: 'black', transform: [{translateY: 0}, {translateX: 10}]}}>GENERO OU TIPO</ThemedText>
           <RNPickerSelect
                 onValueChange={setGenero} value={genero}
                 items={[
@@ -168,10 +172,13 @@ export default function RegisterScreen() {
           />
         </View>
 
+        <ThemedText style={{color: 'black', transform: [{translateY: 325}, {translateX: 50}]}}>NÚMERO DE PAGÍNAS</ThemedText>
         <TextInput keyboardType="numeric" onChangeText={setPaginas} value={pagina}
             placeholder='Pagínas'
             style={stylesRegister.rectangle245}
         />
+
+        <ThemedText style={{color: 'black', transform: [{translateY: 334}, {translateX: 50}]}}>IDIOMA</ThemedText>
         <TextInput onChangeText={setLingua} value={lingua}
             placeholder='Língua'
             style={stylesRegister.rectangle246}
@@ -210,16 +217,11 @@ const pickerSelectStyles = StyleSheet.create({
       paddingVertical: 12,
       paddingHorizontal: 10,
       color: 'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
-      //position: 'absolute',
-      //transform: [{translateY: 320}, {translateX: 37}],
-      //width: 342,
-      //height: 63,
-      /*borderWidth: 2,
+      borderWidth: 3,
       borderColor: '#00000026',
       borderStyle: 'solid',
-      borderRadius: 20,
-      backgroundColor: '#f7f7f7',*/
+      borderRadius: 15,
+      backgroundColor: '#f7f7f7',
   }
 });
 
