@@ -68,7 +68,7 @@ export default function BookScreen() {
           source={{uri: image}}
           style={resets.rectangle47}
         />
-        <Text style={resets.tereLiye}>{estado}</Text>
+        <Text style={resets.tereLiye}>{estado === 'NÃO' ? 'NÃO LIDO' : estado}</Text>
         <Text style={resets.AUTOR}>AUTOR: {autor}</Text>
         <Text style={resets.bintang}>{titulo}</Text>
         <View style={resets.line4} />
@@ -77,7 +77,7 @@ export default function BookScreen() {
         </View>
         <Text style={resets._102}>{paginas}</Text>
         <Text style={resets.pAGES}>PAGINAS</Text>
-        <Text style={{transform: [{translateY: -216}], margin:'auto'}}>IDIOMA: {lingua}</Text>
+        <Text style={{transform: [{translateY: -230}], margin:'auto', borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5}}>IDIOMA: {lingua}</Text>
         <View style={resets.rectangleAlterar}>
           <Text style={resets.aLTER} onPress={irParaTelaUpdate}>ALTERAR</Text>
         </View>

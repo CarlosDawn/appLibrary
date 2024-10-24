@@ -148,7 +148,7 @@ export function useDatabase(){
             throw error
         }
     }
-    async function removeemprestimo(id: number) {
+    async function removeEmprestimo(id: number) {
         
     }
 

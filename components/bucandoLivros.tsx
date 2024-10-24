@@ -83,7 +83,7 @@ export function LivroDataHome({data, ...rest}: Props) {
             <Text style={styleScreenHome.pAGINAS}>{data.paginas} PAGINAS</Text>
             <View style={styleScreenHome.line5} />
             <View style={{width: 100, height: 24, borderRadius: 12, transform: [{translateY: -50}, {translateX: 275}], backgroundColor: 'blue',}}>
-                <Text style={{margin: 'auto', color: 'white', fontStyle: 'italic'}}>{data.estado}</Text>
+                <Text style={{margin: 'auto', color: 'white', fontStyle: 'italic'}}>{data.estado === 'NÃO' ? 'NÃO LIDO' : data.estado}</Text>
             </View>
             <Pressable style={styleScreenHome.rectangle136} >
                 <Link href={{pathname: '/areaBook', params:{id: data.id,
