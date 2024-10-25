@@ -102,13 +102,7 @@ export function LivroEmprestado({data, ...rest}: Empres) {
     return (
         <View>
             <Pressable {...rest}>
-                <Link  href={{pathname: '/areaBook', params:{id: data.id, 
-                                                            livro_id: data.livro_id,
-                                                            nome_pessoa: data.nome_pessoa,
-                                                            data_emprestimo: data.data_emprestimo,
-                                                            prazo_devolucao: data.prazo_devolucao}}} style={styles.textoStyle}>
-                    {data.livro_id} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}
-                </Link >
+                <ThemedText>{data.livro_id} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}</ThemedText>
             </Pressable>
         </View>
     )
@@ -127,3 +121,11 @@ const styles = StyleSheet.create({
         margin: 'auto'
     }
   });
+
+/*<Link  href={{pathname: '/areaBook', params:{id: data.id, 
+                                                            livro_id: data.livro_id,
+                                                            nome_pessoa: data.nome_pessoa,
+                                                            data_emprestimo: data.data_emprestimo,
+                                                            prazo_devolucao: data.prazo_devolucao}}} style={styles.textoStyle}>
+                    {data.livro_id} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}
+                </Link > */

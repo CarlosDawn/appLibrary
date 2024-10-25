@@ -41,6 +41,6 @@ CREATE TABLE IF NOT EXISTS Emprestar (
             nome_pessoa TEXT,
             data_emprestimo TEXT,
             prazo_devolucao TEXT
-        ); 
+        );
 DROP TABLE IF EXISTS Emprestar;
 */

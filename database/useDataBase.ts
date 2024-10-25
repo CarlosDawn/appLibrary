@@ -27,6 +27,13 @@ export type livrosEmprestados = {
     dataFullEmpres: string
     dataFullPrazo: string
 }
+export type emprestBuscados = {
+    id: number
+    livro_id: number
+    nome_pessoa: string
+    data_emprestimo: string
+    prazo_devolucao: string
+}
 
 export function useDatabase(){
     const database = useSQLiteContext()
@@ -139,7 +146,7 @@ export function useDatabase(){
         try {
             const query = "SELECT * FROM Emprestar";
 
-            const response = await database.getAllAsync<livrosEmprestados>(query)
+            const response = await database.getAllAsync<emprestBuscados>(query)
 
             console.log(response);
             return response;

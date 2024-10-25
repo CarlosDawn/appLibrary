@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { StyleSheet, View, FlatList, TextInput } from 'react-native';
 
-import { useDatabase, livrosEmprestados } from '@/database/useDataBase';
+import { useDatabase, emprestBuscados } from '@/database/useDataBase';
 
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
@@ -11,7 +11,7 @@ import { LivroEmprestado } from '@/components/bucandoLivros'
 import 'react-native-gesture-handler';
 
 export default function SearchScreen(){
-  const [livros, setLivros] = useState<livrosEmprestados[]>([])
+  const [livros, setLivros] = useState<emprestBuscados[]>([])
   const [busca, setBusca] = useState("")
 
 //-------------------------------------------------

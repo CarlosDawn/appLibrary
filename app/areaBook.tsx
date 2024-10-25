@@ -20,6 +20,8 @@ import { router } from 'expo-router';
 import { resets } from '@/assets/styles/_resets.module';
 import { stylesRegister } from '@/assets/styles/register_styles'
 import { MaterialIcons } from '@expo/vector-icons';
+import { stylesEmprestar } from '@/assets/styles/emprestar_styles'
+
 export default function BookScreen() {
 
   const {id, titulo, autor, estado, genero, lingua, paginas, image} = useLocalSearchParams<{
@@ -85,7 +87,7 @@ export default function BookScreen() {
           <Text style={resets.eMPRES} onPress={irEmprestar}>EMPRESTAR</Text>
         </View>
         <View style={resets.rectangle492}>
-          <Text style={resets.dELATAR} onPress={() => removerLivro(id)} >DELATAR</Text>
+          <Text style={resets.dELATAR} onPress={() => removerLivro(id)} >DELETAR</Text>
         </View>
       </View>
     );
@@ -229,11 +231,11 @@ export default function BookScreen() {
     }
 
     return(
-      <View>
+      /*<View>
         <Text>Area de emprestar</Text>
         <Image
           source={{uri: image}}
-          style={styles.image}
+          style={resets.rectangle47}
         />
         <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
         <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
@@ -270,7 +272,45 @@ export default function BookScreen() {
         <View style={styles2.buttonContainer}>
           <Button title='EMPRESTAR' onPress={emprestarLivro}/>
         </View>
+      </View>*/
+    <ScrollView>
+      <View style={stylesEmprestar.root}>
+        <Text style={stylesEmprestar.eMPRESTARLIVRO}>EMPRESTAR LIVRO</Text>
+        <Text style={stylesEmprestar.tITULO}>{titulo}</Text>
+        <Text style={stylesEmprestar.aUTOR}>{autor}</Text>
+        <Text style={stylesEmprestar.nOME}>NOME </Text>
+        <Image
+            source={{uri: image}}
+            style={stylesEmprestar.fotoPagina}
+        />
+        
+        <Text style={stylesEmprestar.dATADEEMPRESTIMO}>DATA DE EMPRESTIMO</Text>
+        <DatePicker
+          style={stylesEmprestar.dockedInputDatePickerDesktop}
+          value={dataEmprestimo}
+          mode="date" // or "datetime" for both date and time
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate || dataEmprestimo;
+            setdtaEmpre(currentDate);
+          }}
+        />
+        
+        <DatePicker
+          style={stylesEmprestar.dockedInputDatePickerDesktop2}
+          value={prazoDevolucao}
+          mode="date" // or "datetime" for both date and time
+          onChange={(event, selectedDate) => {
+            const currentDate = selectedDate || prazoDevolucao;
+            setPrazo(currentDate);
+          }}
+        />
+        <Text style={stylesEmprestar.dATADEDEVOLUCAO}>DATA DE DEVOLUÇÃO</Text>
+        <TextInput style={stylesEmprestar.rectangle242} onChangeText={setnome} value={nome_pessoa}/>
+        <Pressable style={stylesEmprestar.rectangle24} onPress={emprestarLivro} >
+          <Text style={stylesEmprestar.eMPRESTAR}>EMPRESTAR</Text>
+        </Pressable>
       </View>
+    </ScrollView>
     );
   }
 
@@ -367,3 +407,17 @@ const styles = StyleSheet.create({
       },
       // ... outros estilos
     });
+
+
+/*<DockedInputDatePickerDesktop_T
+        className={stylesEmprestar.dockedInputDatePickerDesktop}
+        classes={{ textField2: stylesEmprestar.textField }}
+        hide={{ datePicker: true, supportingText: true }}
+        text={{ inputText: <Text style={stylesEmprestar.inputText}>08/12/2023</Text> }}
+      />
+      <DockedInputDatePickerDesktop_T
+        className={stylesEmprestar.dockedInputDatePickerDesktop2}
+        classes={{ textField2: stylesEmprestar.textField2 }}
+        hide={{ datePicker: true, supportingText: true }}
+        text={{ inputText: <Text style={stylesEmprestar.inputText2}>08/12/2023</Text> }}
+      /> */

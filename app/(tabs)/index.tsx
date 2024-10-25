@@ -78,21 +78,21 @@ export default function HomeScreen() {
           data={livrosLendo}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20, marginBottom: 12}}
         />
 
         <FlatList
           data={livrosLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20, marginBottom: 12}}
         />
 
         <FlatList
           data={livrosNaoLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 5.5, borderRadius: 20}}
+          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20}}
         />
       </View>
     </View>
