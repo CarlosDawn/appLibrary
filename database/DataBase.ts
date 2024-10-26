@@ -14,10 +14,11 @@ export async function initDatabase(database:SQLiteDatabase) {
         );   
         CREATE TABLE IF NOT EXISTS Emprestar (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            livro_id INTEGER,
-            nome_pessoa TEXT,
-            data_emprestimo TEXT,
-            prazo_devolucao TEXT
+            nome_livro TEXT NOT NULL,
+            image_livro TEXT NOT NULL,
+            nome_pessoa TEXT NOT NULL,
+            data_emprestimo TEXT NOT NULL,
+            prazo_devolucao TEXT NOT NULL
         );
     `)
 }
@@ -37,10 +38,11 @@ DROP TABLE IF EXISTS Livros;
 
 CREATE TABLE IF NOT EXISTS Emprestar (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            livro_id INTEGER,
-            nome_pessoa TEXT,
-            data_emprestimo TEXT,
-            prazo_devolucao TEXT
+            nome_livro TEXT NOT NULL,
+            image_livro TEXT NOT NULL,
+            nome_pessoa TEXT NOT NULL,
+            data_emprestimo TEXT NOT NULL,
+            prazo_devolucao TEXT NOT NULL
         );
 DROP TABLE IF EXISTS Emprestar;
 */

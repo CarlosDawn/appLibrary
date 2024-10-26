@@ -22,14 +22,16 @@ export type LivroDataBaseUp = {
 }
 export type livrosEmprestados = {
     id: number
-    livro_id: number
+    nome_livro: string
+    image_livro: string
     nome_pessoa: string
     dataFullEmpres: string
     dataFullPrazo: string
 }
 export type emprestBuscados = {
     id: number
-    livro_id: number
+    nome_livro: string
+    image_livro: string
     nome_pessoa: string
     data_emprestimo: string
     prazo_devolucao: string
@@ -67,18 +69,19 @@ export function useDatabase(){
 
     async function emprestar(data: Omit<livrosEmprestados, "id">) {
         const statement = await database.prepareAsync(
-            "INSERT INTO Emprestar (livro_id, nome_pessoa, data_emprestimo, prazo_devolucao) VALUES ($livro_id, $nome_pessoa, $dataFullEmpres, $dataFullPrazo)"
+            "INSERT INTO Emprestar (nome_livro, image_livro, nome_pessoa, data_emprestimo, prazo_devolucao) VALUES ($nome_livro, $image_livro, $nome_pessoa, $dataFullEmpres, $dataFullPrazo)"
         )
 
         try {
             await statement.executeAsync({
-                $livro_id: data.livro_id,
+                $nome_livro: data.nome_livro,
+                $image_livro: data.image_livro,
                 $nome_pessoa: data.nome_pessoa,
                 $dataFullEmpres: data.dataFullEmpres,
                 $dataFullPrazo: data.dataFullPrazo
             }) 
             
-            console.log(data.livro_id, data.nome_pessoa, data.dataFullEmpres)
+            console.log(data.nome_livro, data.nome_pessoa, data.dataFullEmpres)
         } catch (error) {
             throw error
         } finally {

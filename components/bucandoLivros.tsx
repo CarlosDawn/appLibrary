@@ -10,6 +10,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import {styleScreen} from '@/assets/styles/serach_styles';
 import { styleScreenHome } from "@/assets/styles/home_styles_screen";
+import { styleEmpres } from "@/assets/styles/lista_emprestimos_styles";
+
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaFrameContext, SafeAreaView } from "react-native-safe-area-context";
@@ -30,7 +32,8 @@ type Props = PressableProps & {
 type Empres = PressableProps & {
     data: {
         id: number
-        livro_id: number
+        nome_livro: string
+        image_livro: string
         nome_pessoa: string
         data_emprestimo: string
         prazo_devolucao: string
@@ -100,10 +103,39 @@ export function LivroDataHome({data, ...rest}: Props) {
 }
 export function LivroEmprestado({data, ...rest}: Empres) {
     return (
-        <View>
+        /*<View>
+             <Image
+                style={styles.image}
+                source={{uri: data.image_livro}}
+                contentFit="cover"
+                transition={800}
+            />
             <Pressable {...rest}>
-                <ThemedText>{data.livro_id} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}</ThemedText>
+                <ThemedText>{data.nome_livro} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}</ThemedText>
             </Pressable>
+        </View>*/
+        <View>
+            <View style={styleEmpres.rectangle50} />
+            <Image
+                style={styleEmpres.rectangle51}
+                source={{uri: data.image_livro}}
+                contentFit="cover"
+                transition={800}
+            />
+            <Text style={styleEmpres.tITULO}>{data.nome_livro}</Text>
+            <Text style={styleEmpres.pESSOA}>Emprestado para: {data.nome_pessoa}</Text>
+            <View style={styleEmpres.line5} />
+            <View style={styleEmpres.rectangle136} >
+                <Text style={styleEmpres.eMPRESTIMO}>EMPRESTIMO: {data.data_emprestimo}</Text>
+            </View>
+            <View style={[styleEmpres.rectangle137, data.prazo_devolucao==='26/9/2024' && styleEmpres.diaDePrazo]}>
+                <Text style={styleEmpres.dEVOLUCAO}>DEVOLUÇÃO: {data.prazo_devolucao}</Text>
+            </View>
+
+            <Pressable>
+                <MaterialIcons name="delete" size={50} style={{transform: [{translateY: -90}, {translateX: 330}]}}/>
+            </Pressable>
+
         </View>
     )
 }

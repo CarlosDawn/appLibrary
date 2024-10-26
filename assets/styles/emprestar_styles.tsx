@@ -6,6 +6,7 @@ export const stylesEmprestar = StyleSheet.create({
       //top: 546,
       transform: [{translateY: -271}, {translateX: 70}],
       height: 68,
+      color: 'blue'
     },
     textField: {
       position: 'absolute',
@@ -47,7 +48,7 @@ export const stylesEmprestar = StyleSheet.create({
       alignSelf: 'stretch',
       flexDirection: 'column',
       alignItems: 'flex-start',
-      backgroundColor: '#DAE9C8',
+      backgroundColor: '#F3FFE0',
       height: 900,
       width: 420,
       //overflowY: 'auto',

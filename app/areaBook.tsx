@@ -216,12 +216,13 @@ export default function BookScreen() {
 
       try {
 
-        const livro_id = parseInt(id);
+        const nome_livro = titulo;
+        const image_livro = image;
 
         const dataFullEmpres: string = dataEmprestimo.getDate()+"/"+dataEmprestimo.getMonth()+"/"+dataEmprestimo.getFullYear();
         const dataFullPrazo: string = prazoDevolucao.getDate()+"/"+prazoDevolucao.getMonth()+"/"+prazoDevolucao.getFullYear();
 
-        await livroDatabase.emprestar({livro_id, nome_pessoa, dataFullEmpres, dataFullPrazo});
+        await livroDatabase.emprestar({nome_livro, image_livro, nome_pessoa, dataFullEmpres, dataFullPrazo});
 
         Alert.alert("Livro EMPRESTADO !!!")
 
