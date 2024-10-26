@@ -36,8 +36,8 @@ export default function HomeScreen() {
   }
 
   useEffect(() => {
-    listaLivrosLidos()
-  }, ["LIDO"])
+    listaLivrosLidos(), 1000
+  }, [])
 //-------------------------------------------------------------------------------------------
   async function listaLivrosNaoLidos() {
     try {
@@ -49,8 +49,8 @@ export default function HomeScreen() {
   }
 
   useEffect(() => {
-    listaLivrosNaoLidos()
-  }, ["NÃO"])
+    listaLivrosNaoLidos(), 1000
+  }, [])
 //-------------------------------------------------------------------------------------------
 
   async function listaLivrosLendo() {
@@ -63,8 +63,8 @@ export default function HomeScreen() {
   }
 
   useEffect(() => {
-    listaLivrosLendo()
-  }, ["LENDO"])
+    listaLivrosLendo(), 1000
+  }, [])
 //-------------------------------------------------------------------------------------------
 
   return (

@@ -38,8 +38,6 @@ export default function RegisterScreen() {
       quality: 1,
     });
 
-    console.log(result, paginas);
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
@@ -51,75 +49,22 @@ export default function RegisterScreen() {
   async function registrarLivro() {
     try {
       const response = await livroDatabase.criar({image, titulo, autor, estado, genero, paginas, lingua})
+      setTitulo("")
+      setAutor("")
+      setEstado("")
+      setGenero("")
+      setPaginas("")
+      setLingua("")
+      setImage("")
 
-      Alert.alert("Livro Cadastrado !!! ------ ID: " + response.insertedRowId)
+      Alert.alert("Livro Cadastrado !!! ")
     } catch (error) {
       console.log(error)
     }
-   console.log(paginas, image)
   }
 //------------------------------------------------
 
   return (
-    /*<SafeAreaView>
-      <ScrollView>
-        <View style={styles.titleContainer}>
-          <ThemedText type='title'>Welcome! Register Books Area</ThemedText>
-          <HelloWave/>
-          <ThemedText style={{color: 'black'}}>NOME</ThemedText>
-          <TextInput onChangeText={setTitulo} value={titulo}
-            placeholder='Titulo'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-          />
-          <ThemedText style={{color: 'black'}}>AUTOR</ThemedText>
-          <TextInput onChangeText={setAutor} value={autor}
-            placeholder='Autor'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-          />
-          <ThemedText style={{color: 'black'}}>ESTADO</ThemedText>
-          <RNPickerSelect
-              onValueChange={setEstado} value={estado}
-              items={[
-                  { label: "LIDO", value: "LIDO" },
-                  { label: "NÃO", value: "NÃO" },
-                  { label: "LENDO", value: "LENDO" },
-              ]}
-              style={pickerSelectStyles}
-          />
-
-          <ThemedText style={{color: 'black'}}>GENERO</ThemedText>
-          <RNPickerSelect
-              onValueChange={setGenero} value={genero}
-              items={[
-                  { label: "ROMANCE", value: "ROMANCE" },
-                  { label: "TERROR", value: "TERROR" },
-                  { label: "THRILLER", value: "THRILLER" },
-                  { label: "AVENTURA", value: "AVENTURA" },
-                  { label: "MISTERIO", value: "MISTERIO" },
-                  { label: "FICÇÃO", value: "FICÇÃO" },
-                  { label: "OUTROS", value: "OUTROS" }
-              ]}
-              style={pickerSelectStyles}
-          />
-
-
-          <ThemedText style={{color: 'black'}}>PAGINAS</ThemedText>
-          <TextInput keyboardType="numbers-and-punctuation" onChangeText={setPaginas} value={pagina}
-            placeholder='Pagínas'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, maxWidth:120}}
-          />
-
-          <ThemedText style={{color: 'black'}}>LINGUA</ThemedText>
-          <TextInput onChangeText={setLingua} value={lingua}
-            placeholder='Língua'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200}}
-          />
-          <Button title="Pick an image from camera roll" onPress={pickImage} />
-
-          <Button title='SALVAR' onPress={registrarLivro}/>
-        </View>
-      </ScrollView>
-    </SafeAreaView>*/
     <ScrollView>
       <View style={stylesRegister.root}>
         <Text style={stylesRegister.cADASTRARLIVRO}>CADASTRAR LIVRO</Text>
@@ -151,7 +96,7 @@ export default function RegisterScreen() {
                 onValueChange={setEstado} value={estado}
                 items={[
                     { label: "LIDO", value: "LIDO" },
-                    { label: "NÃO", value: "NÃO" },
+                    { label: "NÃO LIDO", value: "NÃO" },
                     { label: "LENDO", value: "LENDO" },
                 ]}
                 style={pickerSelectStyles}
