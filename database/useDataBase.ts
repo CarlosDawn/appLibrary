@@ -81,7 +81,6 @@ export function useDatabase(){
                 $dataFullPrazo: data.dataFullPrazo
             }) 
             
-            console.log(data.nome_livro, data.nome_pessoa, data.dataFullEmpres)
         } catch (error) {
             throw error
         } finally {
@@ -145,13 +144,12 @@ export function useDatabase(){
             throw error
         }
     }
-    async function buscaTodosEmprestados() {
+    async function buscaTodosEmprestados(nome_livro: string) {
         try {
-            const query = "SELECT * FROM Emprestar";
+            const query = "SELECT * FROM Emprestar WHERE nome_livro LIKE ? ORDER BY nome_livro ASC";
 
-            const response = await database.getAllAsync<emprestBuscados>(query)
+            const response = await database.getAllAsync<emprestBuscados>(query, `%${nome_livro}%`)
 
-            console.log(response);
             return response;
 
         } catch (error) {
@@ -159,8 +157,21 @@ export function useDatabase(){
         }
     }
     async function removeEmprestimo(id: number) {
-        
+        try {
+            await database.execAsync(
+                "DELETE FROM Emprestar WHERE id = " + id
+            )
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    return {criar, emprestar, update, remove, buscaNomeLivro, buscaLivrosPorEstatos, buscaTodosEmprestados}
+    return {criar, 
+            emprestar, 
+            update, 
+            remove, 
+            removeEmprestimo, 
+            buscaNomeLivro, 
+            buscaLivrosPorEstatos, 
+            buscaTodosEmprestados}
 }

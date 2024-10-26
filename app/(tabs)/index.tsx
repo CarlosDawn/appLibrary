@@ -71,28 +71,28 @@ export default function HomeScreen() {
     <View style={{backgroundColor: '#F3FFE0',
       height: 800}}>
       <View style={{height: 100, margin: 'auto'}}>
-        <Text style={{ fontFamily: 'Times New Roman', fontSize: 50, height: 53, color: 'black', transform: [{translateY: 50}] }}>HOME</Text>
+        <Text style={{ fontFamily: 'Times New Roman', fontSize: 50, height: 53, color: 'black', transform: [{translateY: 5}] }}>HOME</Text>
       </View>
       <View style={styles.titleContainer}>
         <FlatList
           data={livrosLendo}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 12}}
         />
 
         <FlatList
           data={livrosLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 12}}
         />
 
         <FlatList
           data={livrosNaoLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 160, top: -120, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 3.5, borderRadius: 20}}
+          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20}}
         />
       </View>
     </View>

@@ -1,10 +1,10 @@
-import { Pressable, PressableProps, View, StyleSheet, Text, Button, TouchableHighlight, } from "react-native";
+import { Pressable, PressableProps, View, StyleSheet, Text, Button, TouchableHighlight, Alert, } from "react-native";
 import { ThemedText } from '@/components/ThemedText';
 import { Link, router } from 'expo-router';
 import { Route, useParams } from 'react-router-dom';
 
 import { Image } from 'expo-image';
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -15,6 +15,8 @@ import { styleEmpres } from "@/assets/styles/lista_emprestimos_styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaFrameContext, SafeAreaView } from "react-native-safe-area-context";
+
+import { useDatabase } from "@/database/useDataBase";
 
 type Props = PressableProps & {
     data: {
@@ -38,6 +40,8 @@ type Empres = PressableProps & {
         data_emprestimo: string
         prazo_devolucao: string
     }
+
+    onDelete: () => void
 }
 
 export function LivroData({data, ...rest}: Props) {
@@ -101,7 +105,18 @@ export function LivroDataHome({data, ...rest}: Props) {
         </View>
     )
 }
-export function LivroEmprestado({data, ...rest}: Empres) {
+export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
+    
+    const [dataAtual, setDataAtual] = useState(new Date());
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setDataAtual(new Date());
+        }, 10000);
+    
+        return () => clearInterval(intervalId);
+      }, []);
+
     return (
         /*<View>
              <Image
@@ -128,12 +143,12 @@ export function LivroEmprestado({data, ...rest}: Empres) {
             <View style={styleEmpres.rectangle136} >
                 <Text style={styleEmpres.eMPRESTIMO}>EMPRESTIMO: {data.data_emprestimo}</Text>
             </View>
-            <View style={[styleEmpres.rectangle137, data.prazo_devolucao==='26/9/2024' && styleEmpres.diaDePrazo]}>
+            <View style={[styleEmpres.rectangle137, data.prazo_devolucao === dataAtual.toLocaleDateString() && styleEmpres.diaDePrazo]}>
                 <Text style={styleEmpres.dEVOLUCAO}>DEVOLUÇÃO: {data.prazo_devolucao}</Text>
             </View>
 
-            <Pressable>
-                <MaterialIcons name="delete" size={50} style={{transform: [{translateY: -90}, {translateX: 330}]}}/>
+            <Pressable onPress={onDelete}>
+                <MaterialIcons name="delete" size={50} style={{transform: [{translateY: -50}, {translateX: 330}]}}/>
             </Pressable>
 
         </View>

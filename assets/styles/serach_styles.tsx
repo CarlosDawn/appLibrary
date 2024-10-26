@@ -158,10 +158,10 @@ export const styleScreen = StyleSheet.create({
       },
       rectangle136: {
         //position: 'absolute',
-        left: 300,
-        width: 50,
+        left: 290,
+        width: 55,
         height: 34,
-        borderRadius: 12,
+        borderRadius: 17,
         transform: [{translateY: -60}],
         backgroundColor: '#90a67f',
       },

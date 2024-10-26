@@ -39,27 +39,6 @@ export default function SearchScreen(this: any){
 //-------------------------------------------------
 
   return (
-    /*<View style={styles.titleContainer}>
-      <ThemedText style={styles.textoStyle} type='title'>Welcome! Serach Books Area</ThemedText>
-      <HelloWave />
-
-      <TextInput style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} onChangeText={setBusca}/>
-    
-      <FlatList
-        data={livros}
-        renderItem={({item}) => < LivroData data={item}/>}
-        keyExtractor={(item) => String(item.id)}
-      />
-    </View>
-    
-    <Group95 className={styles.group95} />
-    <BookOpen_Size48
-          className={styles.bookOpen}
-          swap={{
-          icon: <BookOpenIcon className={styles.icon} />,
-          }}
-      />
-    */
     <View style={styleScreen.root}>
       <View>
         <Text style={styleScreen.hasilScan}>BUSCAR LIVROS</Text>
@@ -71,7 +50,7 @@ export default function SearchScreen(this: any){
         data={livros}
         renderItem={({item}) => < LivroData data={item} />}
         keyExtractor={(item) => String(item.id)}
-        style={{width: 397, marginTop: 165}}
+        style={{width: 397, marginTop: 135, margin: 'auto', borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20}}
       />
       <View style={styleScreen.retanguloToFlatList}></View>
     </View>

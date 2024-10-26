@@ -219,8 +219,8 @@ export default function BookScreen() {
         const nome_livro = titulo;
         const image_livro = image;
 
-        const dataFullEmpres: string = dataEmprestimo.getDate()+"/"+dataEmprestimo.getMonth()+"/"+dataEmprestimo.getFullYear();
-        const dataFullPrazo: string = prazoDevolucao.getDate()+"/"+prazoDevolucao.getMonth()+"/"+prazoDevolucao.getFullYear();
+        const dataFullEmpres: string = dataEmprestimo.getDate()+"/"+(dataEmprestimo.getMonth()+1)+"/"+dataEmprestimo.getFullYear();
+        const dataFullPrazo: string = prazoDevolucao.getDate()+"/"+(prazoDevolucao.getMonth()+1)+"/"+prazoDevolucao.getFullYear();
 
         await livroDatabase.emprestar({nome_livro, image_livro, nome_pessoa, dataFullEmpres, dataFullPrazo});
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, TextInput, Text } from 'react-native';
+import { StyleSheet, View, FlatList, TextInput, Text, Alert } from 'react-native';
 
 import { useDatabase, emprestBuscados } from '@/database/useDataBase';
 
@@ -23,7 +23,7 @@ export default function SearchScreen(){
 
   async function listaLivros() {
     try {
-      const response = await livroDatabase.buscaTodosEmprestados()
+      const response = await livroDatabase.buscaTodosEmprestados(busca)
       setEmprestimos(response)
     } catch (error) {
       console.log(error);
@@ -34,6 +34,17 @@ export default function SearchScreen(){
     listaLivros()
   }, [busca])
 //-------------------------------------------------
+  async function removerLivro(id: number) {
+      //const idDelete = parseInt(id)
+      try {
+      await livroDatabase.removeEmprestimo(id);
+
+      Alert.alert("Emprestimo APAGADO !!!");
+
+      } catch (error) {
+      console.log(error)
+      }
+  }
 
   return (
     
@@ -58,9 +69,9 @@ export default function SearchScreen(){
       </View>
       <FlatList
         data={Emprestados}
-        renderItem={({item}) => < LivroEmprestado data={item} />}
+        renderItem={({item}) => < LivroEmprestado data={item} onDelete={() => removerLivro(item.id)}/>}
         keyExtractor={(item) => String(item.id)}
-        style={{width: 397, marginTop: 165}}
+        style={{width: 397, marginTop: 165, margin: 'auto', borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20}}
       />
       <View style={styleEmpres.retanguloToFlatList}></View>
     </View>

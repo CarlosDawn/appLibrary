@@ -129,7 +129,7 @@ export const styleEmpres = StyleSheet.create({
       //left: 133,
       //top: 160,
       //transform: [{translateY: -25}],
-      margin: 'auto'
+      margin: 'auto',
       //height: 17,
       //flexDirection: 'column',
     },
@@ -176,6 +176,7 @@ export const styleEmpres = StyleSheet.create({
         left: 130,
         width: 180,
         height: 20,
+        marginBottom: -40,
         borderRadius: 12,
         transform: [{translateY: -30}],
         backgroundColor: '#90a67f',
@@ -185,7 +186,7 @@ export const styleEmpres = StyleSheet.create({
         width: 180,
         height: 20,
         borderRadius: 12,
-        transform: [{translateY: -20}],
+        transform: [{translateY: 20}],
         backgroundColor: '#90a67f',
       },
       diaDePrazo: {
@@ -193,7 +194,7 @@ export const styleEmpres = StyleSheet.create({
         width: 180,
         height: 20,
         borderRadius: 12,
-        transform: [{translateY: -20}],
+        transform: [{translateY: 20}],
         backgroundColor: 'red',
       },
       vER: {
