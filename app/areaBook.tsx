@@ -48,6 +48,10 @@ export default function BookScreen() {
       navigation.navigate("AreaEmprestarLivro")
     };
 
+    const irTelaPesquisa = () =>  {
+      router.push('/(tabs)/searchBook')
+    };
+
     const livroDatabase = useDatabase();
 
     async function removerLivro(id: string) {
@@ -57,7 +61,7 @@ export default function BookScreen() {
 
         Alert.alert("Livro APAGADO !!!")
 
-        router.push('/(tabs)/searchBook')
+        router.push('/(tabs)/searchBook')// Volta para a tela de pesquisa
       } catch (error) {
         console.log(error)
       }
@@ -65,7 +69,9 @@ export default function BookScreen() {
 
     return (
       <View style={styles.root}>
-        <Link style={{marginLeft: 'auto', marginRight: 'auto', textDecorationLine: 'underline'}} href={"/(tabs)/searchBook"}>-Voltar Para Pesquisa-</Link>
+        <Pressable onPress={irTelaPesquisa}>
+          <MaterialIcons name='arrow-back-ios' size={30} style={{transform: [{translateY: 20}, {translateX: 20}]}}/>
+        </Pressable>
         <Image
           source={{uri: image}}
           style={resets.rectangle47}
@@ -79,7 +85,7 @@ export default function BookScreen() {
         </View>
         <Text style={resets._102}>{paginas}</Text>
         <Text style={resets.pAGES}>PAGINAS</Text>
-        <Text style={{transform: [{translateY: -230}], margin:'auto', borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5}}>IDIOMA: {lingua}</Text>
+        <Text style={{transform: [{translateY: -235}], width: 135, margin:'auto', textAlign: 'center', borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5}}>IDIOMA: {lingua}</Text>
         <View style={resets.rectangleAlterar}>
           <Text style={resets.aLTER} onPress={irParaTelaUpdate}>ALTERAR</Text>
         </View>
@@ -232,48 +238,6 @@ export default function BookScreen() {
     }
 
     return(
-      /*<View>
-        <Text>Area de emprestar</Text>
-        <Image
-          source={{uri: image}}
-          style={resets.rectangle47}
-        />
-        <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
-        <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
-        <Text style={styles.titleContainer}>GENERO: {genero}</Text>
-        <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
-        
-        <TextInput onChangeText={setnome} value={nome_pessoa}
-            placeholder='Titulo'
-            style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, width: 150, maxWidth: 200, margin: 'auto'}}
-        />
-
-        <Text style={styles.titleContainer}>Selecione Data de Emprestimo</Text>
-        <DatePicker
-          style={styles.titleContainer}
-          value={dataEmprestimo}
-          mode="date" // or "datetime" for both date and time
-          onChange={(event, selectedDate) => {
-            const currentDate = selectedDate || dataEmprestimo;
-            setdtaEmpre(currentDate);
-          }}
-        />
-
-        <Text style={styles.titleContainer}>Selecione Data de Devolução</Text>
-        <DatePicker
-          style={styles.titleContainer}
-          value={prazoDevolucao}
-          mode="date" // or "datetime" for both date and time
-          onChange={(event, selectedDate) => {
-            const currentDate = selectedDate || prazoDevolucao;
-            setPrazo(currentDate);
-          }}
-        />
-
-        <View style={styles2.buttonContainer}>
-          <Button title='EMPRESTAR' onPress={emprestarLivro}/>
-        </View>
-      </View>*/
     <ScrollView>
       <View style={stylesEmprestar.root}>
         <Text style={stylesEmprestar.eMPRESTARLIVRO}>EMPRESTAR LIVRO</Text>

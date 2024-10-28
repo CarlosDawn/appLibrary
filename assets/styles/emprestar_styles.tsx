@@ -4,9 +4,8 @@ export const stylesEmprestar = StyleSheet.create({
     dockedInputDatePickerDesktop: {
       //left: 38,
       //top: 546,
-      transform: [{translateY: -271}, {translateX: 70}],
-      height: 68,
-      color: 'blue'
+      transform: [{translateY: -268}, {translateX: 70}],
+      height: 60,
     },
     textField: {
       position: 'absolute',
@@ -25,8 +24,8 @@ export const stylesEmprestar = StyleSheet.create({
     dockedInputDatePickerDesktop2: {
       //left: 38,
       //top: 663,
-      transform: [{translateY: -257}, {translateX: 70}],
-      height: 68,
+      transform: [{translateY: -262}, {translateX: 70}],
+      height: 60,
     },
     textField2: {
       position: 'absolute',
@@ -128,7 +127,7 @@ export const stylesEmprestar = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Times New Roman',
         fontWeight: '900',
-        transform: [{translateY: -110}, {translateX: 60}],
+        transform: [{translateY: -120}, {translateX: 60}],
         //width: 'min-content',
         //height: 'min-content',
         textAlign: 'center',

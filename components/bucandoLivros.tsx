@@ -118,17 +118,6 @@ export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
       }, []);
 
     return (
-        /*<View>
-             <Image
-                style={styles.image}
-                source={{uri: data.image_livro}}
-                contentFit="cover"
-                transition={800}
-            />
-            <Pressable {...rest}>
-                <ThemedText>{data.nome_livro} - {data.nome_pessoa} - {data.data_emprestimo} - {data.prazo_devolucao}</ThemedText>
-            </Pressable>
-        </View>*/
         <View>
             <View style={styleEmpres.rectangle50} />
             <Image
@@ -143,7 +132,7 @@ export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
             <View style={styleEmpres.rectangle136} >
                 <Text style={styleEmpres.eMPRESTIMO}>EMPRESTIMO: {data.data_emprestimo}</Text>
             </View>
-            <View style={[styleEmpres.rectangle137, data.prazo_devolucao === dataAtual.toLocaleDateString() && styleEmpres.diaDePrazo]}>
+            <View style={[styleEmpres.rectangle137, data.prazo_devolucao <= dataAtual.toLocaleDateString() && styleEmpres.diaDePrazo]}>
                 <Text style={styleEmpres.dEVOLUCAO}>DEVOLUÇÃO: {data.prazo_devolucao}</Text>
             </View>
 
