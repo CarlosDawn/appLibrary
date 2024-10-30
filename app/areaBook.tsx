@@ -173,7 +173,7 @@ export default function BookScreen() {
                 onValueChange={setEstado} value={estadoUp}
                 items={[
                     { label: "LIDO", value: "LIDO" },
-                    { label: "NÃO", value: "NÃO" },
+                    { label: "NÃO LIDO", value: "NÃO" },
                     { label: "LENDO", value: "LENDO" },
                 ]}
                 style={pickerSelectStyles}

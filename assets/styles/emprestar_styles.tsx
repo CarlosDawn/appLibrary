@@ -65,7 +65,7 @@ export const stylesEmprestar = StyleSheet.create({
       color: '#fff',
       fontSize: 24,
       fontWeight: '900',
-      fontFamily: 'Times New Roman',
+      fontFamily: 'Times New Roman \ Arial',
       margin: 'auto',
       //width: 'min-content',
       //height: 'min-content',
@@ -77,7 +77,7 @@ export const stylesEmprestar = StyleSheet.create({
     eMPRESTARLIVRO: {
       color: '#000',
       fontSize: 24,
-      fontFamily: 'Times New Roman',
+      fontFamily: 'Times New Roman \ Arial',
       margin: 'auto',
       //position: 'absolute',
       //left: 84,
@@ -92,7 +92,7 @@ export const stylesEmprestar = StyleSheet.create({
     tITULO: {
       color: '#000',
       fontSize: 24,
-      fontFamily: 'Times New Roman',
+      fontFamily: 'Times New Roman \ Arial',
       fontWeight: '900',
       //position: 'absolute',
       //left: 149,
@@ -110,7 +110,7 @@ export const stylesEmprestar = StyleSheet.create({
     aUTOR: {
         color: '#000',
         fontSize: 14,
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Times New Roman \ Arial',
         fontWeight: '900',
         transform: [{translateY: -135}],
         marginLeft: 'auto',
@@ -125,7 +125,7 @@ export const stylesEmprestar = StyleSheet.create({
       nOME: {
         color: '#000',
         fontSize: 14,
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Times New Roman \ Arial',
         fontWeight: '900',
         transform: [{translateY: -120}, {translateX: 60}],
         //width: 'min-content',
@@ -151,7 +151,7 @@ export const stylesEmprestar = StyleSheet.create({
       dATADEEMPRESTIMO: {
         color: '#000',
         fontSize: 17,
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Times New Roman \ Arial',
         transform: [{translateY: -230}, {translateX: 200}],
         //width: 'min-content',
         //height: 'min-content',
@@ -163,7 +163,7 @@ export const stylesEmprestar = StyleSheet.create({
       dATADEDEVOLUCAO: {
         color: '#000',
         fontSize: 17,
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Times New Roman \ Arial',
         transform: [{translateY: -300}, {translateX: 200}],
         //width: 'min-content',
         //height: 'min-content',
