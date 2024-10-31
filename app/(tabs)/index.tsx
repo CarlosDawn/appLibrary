@@ -74,25 +74,28 @@ export default function HomeScreen() {
         <Text style={{ fontFamily: 'Times New Roman', fontSize: 50, height: 53, color: 'black', transform: [{translateY: 5}] }}>HOME</Text>
       </View>
       <View style={styles.titleContainer}>
+        <Text style={{transform: [{translateX: 125}, {translateY: -100}], fontWeight: '900', fontFamily: 'Times New Roman', borderStyle: 'dashed', borderColor: 'black', borderWidth: 2.5, borderBottomWidth: 6, borderRadius: 7}}>VOCÊ ESTA LENDO</Text>
+        <Text style={{transform: [{translateX: 140}, {translateY: 43}], fontWeight: '900', fontFamily: 'Times New Roman', borderStyle: 'dashed', borderColor: 'black', borderWidth: 2.5, borderBottomWidth: 6, borderRadius: 7}}>VOCÊ JÁ LEU</Text>
+        <Text style={{transform: [{translateX: 114}, {translateY: 185}], fontWeight: '900', fontFamily: 'Times New Roman', borderStyle: 'dashed', borderColor: 'black', borderWidth: 2.5, borderBottomWidth: 6, borderRadius: 7}}>VOCÊ AINDA NÃO LEU</Text>
         <FlatList
           data={livrosLendo}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 140, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 25, zIndex: 1}}
         />
 
         <FlatList
           data={livrosLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 12}}
+          style={{width: 400, height: 140, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20, marginBottom: 25}}
         />
 
         <FlatList
           data={livrosNaoLido}
           renderItem={({item}) => < LivroDataHome data={item}/>}
           keyExtractor={(item) => String(item.id)}
-          style={{width: 400, height: 170, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20}}
+          style={{width: 400, height: 140, top: -150, borderStyle: 'solid', borderColor: '#90A67F', borderWidth: 1.5, borderRadius: 20}}
         />
       </View>
     </View>

@@ -160,10 +160,10 @@ export default function BookScreen() {
           <MaterialIcons name='camera-alt' size={26}/>
         </Pressable>
 
-        <TextInput onChangeText={setTitulo} value={tituloUp}
+        <TextInput onChangeText={setTitulo} value={tituloUp} textAlign='center'
             style={stylesRegister.rectangle24}
         />
-        <TextInput onChangeText={setAutor} value={autorUp}
+        <TextInput onChangeText={setAutor} value={autorUp} textAlign='center'
             style={stylesRegister.rectangle242}
         />
 
@@ -195,12 +195,12 @@ export default function BookScreen() {
         </View>
 
         <ThemedText style={{color: 'black', transform: [{translateY: 325}, {translateX: 50}]}}>NÚMERO DE PAGÍNAS</ThemedText>
-        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginaToUp}
+        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={paginaToUp} textAlign='center'
             style={stylesRegister.rectangle245}
         />
 
         <ThemedText style={{color: 'black', transform: [{translateY: 334}, {translateX: 50}]}}>IDIOMA</ThemedText>
-        <TextInput onChangeText={setLingua} value={linguaUp}
+        <TextInput onChangeText={setLingua} value={linguaUp} textAlign='center'
             style={stylesRegister.rectangle246}
         />
         <Pressable style={stylesRegister.rectangle247} onPress={atualizarLivro}>
@@ -270,7 +270,7 @@ export default function BookScreen() {
           }}
         />
         <Text style={stylesEmprestar.dATADEDEVOLUCAO}>DATA DE DEVOLUÇÃO</Text>
-        <TextInput style={stylesEmprestar.rectangle242} onChangeText={setnome} value={nome_pessoa}/>
+        <TextInput style={stylesEmprestar.rectangle242} onChangeText={setnome} value={nome_pessoa} textAlign='center'/>
         <Pressable style={stylesEmprestar.rectangle24} onPress={emprestarLivro} >
           <Text style={stylesEmprestar.eMPRESTAR}>EMPRESTAR</Text>
         </Pressable>

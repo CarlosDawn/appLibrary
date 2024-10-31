@@ -81,11 +81,11 @@ export default function RegisterScreen() {
           <MaterialIcons name='camera-alt' size={26}/>
         </Pressable>
 
-        <TextInput onChangeText={setTitulo} value={titulo}
+        <TextInput onChangeText={setTitulo} value={titulo} textAlign='center'
             placeholder='Titulo'
             style={stylesRegister.rectangle24}
         />
-        <TextInput onChangeText={setAutor} value={autor}
+        <TextInput onChangeText={setAutor} value={autor} textAlign='center'
             placeholder='Autor'
             style={stylesRegister.rectangle242}
         />
@@ -118,22 +118,19 @@ export default function RegisterScreen() {
         </View>
 
         <ThemedText style={{color: 'black', transform: [{translateY: 325}, {translateX: 50}]}}>NÚMERO DE PAGÍNAS</ThemedText>
-        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={pagina}
+        <TextInput keyboardType="numeric" onChangeText={setPaginas} value={pagina} textAlign='center'
             placeholder='Pagínas'
             style={stylesRegister.rectangle245}
         />
 
         <ThemedText style={{color: 'black', transform: [{translateY: 334}, {translateX: 50}]}}>IDIOMA</ThemedText>
-        <TextInput onChangeText={setLingua} value={lingua}
+        <TextInput onChangeText={setLingua} value={lingua} textAlign='center'
             placeholder='Língua'
             style={stylesRegister.rectangle246}
         />
         <Pressable style={stylesRegister.rectangle247} onPress={registrarLivro}>
           <Text style={stylesRegister.sALVAR}>SALVAR</Text>
         </Pressable>
-        <View style={stylesRegister._2024}>
-          <Text style={stylesRegister.textBlock4}>©2024</Text>
-        </View>
       </View>
     </ScrollView>
   );

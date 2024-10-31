@@ -17,27 +17,27 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'HOME',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={'black'} />
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={'#647854'} />
           ),
         }}
       />
       <Tabs.Screen
         name="searchBook"
         options={{
-          title: 'Search',
+          title: 'PESQUISA',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'search' : 'search-outline'} color={'black'} />
+            <TabBarIcon name={focused ? 'search' : 'search-outline'} color={'#647854'} />
           ),
         }}
       />
       <Tabs.Screen
         name="registerBook"
         options={{
-          title: 'Register',
+          title: 'REGISTRAR',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'add-circle' : 'add-circle-outline'} color={'black'} />
+            <TabBarIcon name={focused ? 'add-circle' : 'add-circle-outline'} color={'#647854'} />
           ),
         }}
       />
@@ -46,7 +46,7 @@ export default function TabLayout() {
         options={{
           title: 'EMPRESTIMOS',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'bookmarks' : 'bookmark-outline'} color={'black'} />
+            <TabBarIcon name={focused ? 'bookmarks' : 'bookmark-outline'} color={'#647854'} />
           ),
         }}
       />
