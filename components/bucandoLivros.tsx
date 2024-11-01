@@ -108,7 +108,7 @@ export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
     
     const [dataAtual, setDataAtual] = useState(new Date());
 
-    /*useEffect(() => {
+    /*\useEffect(() => {
         const intervalId = setInterval(() => {
             setDataAtual(new Date())
         }, 10000);
