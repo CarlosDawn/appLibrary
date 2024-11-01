@@ -88,7 +88,6 @@ export function LivroDataHome({data, ...rest}: Props) {
             <Text style={styleScreenHome.aUTOR}>{data.autor}</Text>
             <Text style={styleScreenHome.gENRO}>{data.genero}</Text>
             <Text style={styleScreenHome.pAGINAS}>{data.paginas} PAGINAS</Text>
-            <View style={styleScreenHome.line5} />
             <View style={{width: 100, height: 24, borderRadius: 12, transform: [{translateY: -50}, {translateX: 275}], backgroundColor: 'blue',}}>
                 <Text style={{margin: 'auto', color: 'white', fontStyle: 'italic'}}>{data.estado === 'NÃO' ? 'NÃO LIDO' : data.estado}</Text>
             </View>
@@ -109,13 +108,22 @@ export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
     
     const [dataAtual, setDataAtual] = useState(new Date());
 
-    useEffect(() => {
+    /*useEffect(() => {
         const intervalId = setInterval(() => {
-          setDataAtual(new Date());
+            setDataAtual(new Date())
         }, 10000);
     
         return () => clearInterval(intervalId);
-      }, []);
+      }, []);*/
+
+      const dia = dataAtual.getDay()-4;
+      const mes = dataAtual.getMonth()+1;
+      const ano = dataAtual.getFullYear();
+
+      const atualData = dia+"/"+mes+"/"+ano;
+      const devolucao = data.prazo_devolucao;
+      console.log(dia+"/"+mes+"/"+ano);
+      console.log(data.prazo_devolucao);
 
     return (
         <View>
@@ -132,7 +140,7 @@ export function LivroEmprestado({data, onDelete, ...rest}: Empres) {
             <View style={styleEmpres.rectangle136} >
                 <Text style={styleEmpres.eMPRESTIMO}>EMPRESTIMO: {data.data_emprestimo}</Text>
             </View>
-            <View style={[styleEmpres.rectangle137, data.prazo_devolucao <= dataAtual.toLocaleDateString() && styleEmpres.diaDePrazo]}>
+            <View style={[styleEmpres.rectangle137, atualData === devolucao && styleEmpres.diaDePrazo]}>
                 <Text style={styleEmpres.dEVOLUCAO}>DEVOLUÇÃO: {data.prazo_devolucao}</Text>
             </View>
 

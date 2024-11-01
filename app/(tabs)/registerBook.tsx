@@ -105,6 +105,7 @@ export default function RegisterScreen() {
           <RNPickerSelect
                 onValueChange={setGenero} value={genero}
                 items={[
+                    { label: "ESTUDOS", value: "ESTUDOS" },
                     { label: "ROMANCE", value: "ROMANCE" },
                     { label: "TERROR", value: "TERROR" },
                     { label: "THRILLER", value: "THRILLER" },

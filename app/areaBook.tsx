@@ -182,6 +182,7 @@ export default function BookScreen() {
           <RNPickerSelect
                 onValueChange={setGenero} value={generoUp}
                 items={[
+                    { label: "ESTUDOS", value: "ESTUDOS" },
                     { label: "ROMANCE", value: "ROMANCE" },
                     { label: "TERROR", value: "TERROR" },
                     { label: "THRILLER", value: "THRILLER" },
