@@ -1,22 +1,16 @@
 //import * as React from 'react';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
 
-import { LivroData } from '@/components/bucandoLivros'
 import { LivroDataHome } from '@/components/bucandoLivros'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 import { useDatabase, LivroDataBse } from '@/database/useDataBase';
-
-import { HelloWave } from '@/components/HelloWave';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-//import { ScrollView } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
   const [livrosLido, setLivros] = useState<LivroDataBse[]>([]);

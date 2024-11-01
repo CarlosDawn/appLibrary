@@ -4,16 +4,10 @@ import { StyleSheet, View, FlatList, TextInput, Text } from 'react-native';
 import { useDatabase, LivroDataBse } from '@/database/useDataBase';
 
 import {styleScreen} from '@/assets/styles/serach_styles';
-import Group from '@/assets/styles/Group95/Group';
-
-import { HelloWave } from '@/components/HelloWave';
-import { ThemedText } from '@/components/ThemedText';
 
 import { LivroData } from '@/components/bucandoLivros'
 
 import 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function SearchScreen(this: any){
@@ -57,13 +51,3 @@ export default function SearchScreen(this: any){
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    margin: 'auto',
-    alignItems: 'center',
-    gap: 8,
-  },
-  textoStyle: {
-    color: 'black',
-  }
-});

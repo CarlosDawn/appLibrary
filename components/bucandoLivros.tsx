@@ -1,22 +1,13 @@
-import { Pressable, PressableProps, View, StyleSheet, Text, Button, TouchableHighlight, Alert, } from "react-native";
-import { ThemedText } from '@/components/ThemedText';
+import { Pressable, PressableProps, View, StyleSheet, Text } from "react-native";
 import { Link, router } from 'expo-router';
-import { Route, useParams } from 'react-router-dom';
 
 import { Image } from 'expo-image';
-import React, { useEffect, useState } from "react";
-
-import { createStackNavigator } from '@react-navigation/stack';
+import React, { useState } from "react";
 
 import {styleScreen} from '@/assets/styles/serach_styles';
 import { styleScreenHome } from "@/assets/styles/home_styles_screen";
 import { styleEmpres } from "@/assets/styles/lista_emprestimos_styles";
-
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { MaterialIcons } from "@expo/vector-icons";
-import { SafeAreaFrameContext, SafeAreaView } from "react-native-safe-area-context";
-
-import { useDatabase } from "@/database/useDataBase";
 
 type Props = PressableProps & {
     data: {

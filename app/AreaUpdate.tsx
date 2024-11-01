@@ -12,7 +12,6 @@ import * as ImagePicker from 'expo-image-picker';
 import RNPickerSelect from "react-native-picker-select";
 
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 import { useRoute } from '@react-navigation/native';
 
 const UpdateScreen = ({route = useRoute()}) => {
@@ -47,7 +46,6 @@ const UpdateScreen = ({route = useRoute()}) => {
   };
 //-------------------------------------------------
   //=> Esta área é composta por funções para as funcionalidades do aplicativo ('CRUD')
-  const livroDatabase = useDatabase();
 
   async function atualizarLivro() {
     try {

@@ -5,9 +5,6 @@ import { useDatabase, emprestBuscados } from '@/database/useDataBase';
 
 import { styleEmpres } from '@/assets/styles/lista_emprestimos_styles';
 
-import { HelloWave } from '@/components/HelloWave';
-import { ThemedText } from '@/components/ThemedText';
-
 import { LivroEmprestado } from '@/components/bucandoLivros'
 
 import 'react-native-gesture-handler';
@@ -47,19 +44,6 @@ export default function SearchScreen(){
   }
 
   return (
-    
-    /*<View style={styles.titleContainer}>
-      <ThemedText style={styles.textoStyle} type='title'>Welcome! Serach Books Area</ThemedText>
-      <HelloWave />
-
-      <TextInput style={{height: 40, borderWidth: 1, borderColor: "#999", borderRadius: 9, paddingHorizontal:100}} onChangeText={setBusca}/>
-    
-      <FlatList
-        data={Emprestados}
-        renderItem={({item}) => < LivroEmprestado data={item}/>}
-        keyExtractor={(item) => String(item.id)}
-      />
-    </View>*/
     <View style={styleEmpres.root}>
       <View>
         <Text style={styleEmpres.hasilScan}>EMPRESTIMOS E PRAZOS</Text>

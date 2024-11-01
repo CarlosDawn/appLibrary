@@ -1,11 +1,11 @@
-import React, { useState, memo, FC } from 'react';
-import { StyleSheet, View, Button, Text, SafeAreaView, ScrollView, TextInput, Alert, KeyboardAvoidingView, Pressable  } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, ScrollView, TextInput, Alert, Pressable  } from 'react-native';
 
 import { useDatabase } from '@/database/useDataBase';
 
 import { ThemedText } from '@/components/ThemedText';
 
-import { useLocalSearchParams, Link } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -320,70 +320,3 @@ const styles = StyleSheet.create({
 
   }
 });
-
-/*<View style={styles.titleContainer}>
-      <Text style={styles.titleContainer} >LIVRO</Text>
-      <Link href={"/(tabs)/searchBook"}>Voltar Para Pesquisa</Link>
-
-      <Image
-        style={styles.image}
-        source={{uri: image}}
-        contentFit="cover"
-        transition={1000}
-      />
-      <Text style={styles.titleContainer}>TITULO: {titulo}</Text>
-      <Text style={styles.titleContainer}>AUTOR: {autor}</Text>
-      <Text style={styles.titleContainer}>ESTADO: {estado}</Text>
-      <Text style={styles.titleContainer}>GENERO: {genero}</Text>
-      <Text style={styles.titleContainer}>PAGINAS: {paginas}</Text>
-      <Text style={styles.titleContainer}>LINGUA: {lingua}</Text>
-
-      <Button title='ALTERAR'/>
-
-      <Stack.Navigator>
-        <Stack.Screen name="AreaUpate" component={HomeScreen}/>
-      </Stack.Navigator>
-
-
-    </View>  */
-
-    const styles2 = StyleSheet.create({
-      container: {
-        backgroundColor: '#fff',
-        padding: 16,
-        borderRadius: 8,
-        marginBottom: 16,
-      },
-      image: {
-        width: 100,
-        height: 150,
-        borderRadius: 8,
-      },
-      title: {
-        // Estilos para o título
-      },
-      author: {
-        // Estilos para o autor
-      },
-      pages: {
-        // Estilos para o número de páginas
-      },
-      buttonContainer: {
-        // Estilos para o container dos botões
-      },
-      // ... outros estilos
-    });
-
-
-/*<DockedInputDatePickerDesktop_T
-        className={stylesEmprestar.dockedInputDatePickerDesktop}
-        classes={{ textField2: stylesEmprestar.textField }}
-        hide={{ datePicker: true, supportingText: true }}
-        text={{ inputText: <Text style={stylesEmprestar.inputText}>08/12/2023</Text> }}
-      />
-      <DockedInputDatePickerDesktop_T
-        className={stylesEmprestar.dockedInputDatePickerDesktop2}
-        classes={{ textField2: stylesEmprestar.textField2 }}
-        hide={{ datePicker: true, supportingText: true }}
-        text={{ inputText: <Text style={stylesEmprestar.inputText2}>08/12/2023</Text> }}
-      /> */
