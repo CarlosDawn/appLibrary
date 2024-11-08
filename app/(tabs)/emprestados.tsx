@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { StyleSheet, View, FlatList, TextInput, Text, Alert } from 'react-native';
+import { View, FlatList, TextInput, Text, Alert } from 'react-native';
 
 import { useDatabase, emprestBuscados } from '@/database/useDataBase';
 
@@ -61,14 +61,3 @@ export default function SearchScreen(){
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    margin: 'auto',
-    alignItems: 'center',
-    gap: 8,
-  },
-  textoStyle: {
-    color: 'black',
-  }
-});
